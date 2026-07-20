@@ -50,7 +50,7 @@ export function CouponManager({ initial }: { initial: Coupon[] }) {
           <div key={c.id} className="flex justify-between rounded-xl border border-ink-100 bg-white px-4 py-3 text-sm">
             <span className="font-mono font-semibold">{c.code}</span>
             <span>
-              {c.discountType === "PERCENT" ? `${c.discountValue}%` : `${c.discountValue} BGN`} ·
+              {c.discountType === "PERCENT" ? `${c.discountValue}%` : `${c.discountValue} EUR`} ·
               използвано {c.usedCount}
               {c.maxUses ? `/${c.maxUses}` : ""}
             </span>

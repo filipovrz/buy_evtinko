@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?mso-application progid="Word.Document"?>
+<w:wordDocument
+ xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
+ xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xml:space="preserve">
+  <o:DocumentProperties>
+    <o:Title>CHAT_HISTORY</o:Title>
+    <o:Author>Auctions Evtinko Ltd.</o:Author>
+    <o:Company>Auctions Evtinko Ltd.</o:Company>
+  </o:DocumentProperties>
+  <w:body>
+    <wx:sect>
+      <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>CHAT_HISTORY</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-20T23:58:22.830Z</w:t></w:r></w:p>
+      <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># Chat History — buy-software.evtinko-bg.com</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Сесия с AI асистента (Composer / Cursor). Обновява се до края на работата.</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — Старт на проекта</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Потребител (първо съобщение)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Искане за сайт за продажба на софтуер, апликации, приложения и други файлове с:</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Download със заплащане</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Само онлайн плащане (кредитна карта, epay.bg, PayPal и други) с автоматично одобряване</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Админ панел за файлове, цени и администриране</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Професионална визия и екстри</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Потребителско меню + пазаруване без акаунт</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Хостинг на акаунт на клиента; домейн: `buy-software.evtinko-bg.com`</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Запазена марка: **Auctions Evtinko Ltd.**</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Задължителни файлове: TODO, README, checkpoint, chat history (този файл)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- GitHub: https://github.com/filipovrz/buy_evtinko</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Клиентът не разбира от програмиране — всичко се прави от асистента; да се каже какво се иска от клиента за хостинга</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Ако има допълнителни идеи — да се предложат за одобрение</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Асистент</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Преглед на workspace `G:\Pgojects\sell_app` (празен) и GitHub репото (празно)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Създаден Next.js 15 + Prisma + NextAuth дигитален магазин</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Каталог, количка, guest checkout, акаунт, плащания (Stripe/PayPal/ePay/DEMO), download токени</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Админ панел: продукти, цени, upload, поръчки, категории, купони, потребители, съобщения, настройки</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Документи: README.md, TODO.md, CHECKPOINT.md, CHAT_HISTORY.md</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Предложени опционални екстри за одобрение (имейл, PDF фактура, EN/BG, социален вход, wishlist, графики, 2FA)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Статус към края на тази стъпка</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- `npm install` + Prisma generate — OK  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- `prisma db push` + seed — OK (админ + демо продукти)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- `next build` — успешен  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Dev сървър: http://localhost:3000  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Git инициализиран; push към GitHub чака одобрение / credentials  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Документи: README, TODO, CHECKPOINT, CHAT_HISTORY  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Какво се иска от клиента (хостинг)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>1. Хостинг с **Node.js 20+** (VPS или Node App в cPanel) — не само PHP  </w:t></w:r></w:p>
+<w:p><w:r><w:t>2. DNS за `buy-software.evtinko-bg.com`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>3. SSL  </w:t></w:r></w:p>
+<w:p><w:r><w:t>4. Ключове: Stripe, PayPal, ePay.bg (за реални плащания)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>5. Смяна на админ парола преди публикуване  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Предложени екстри (чака одобрение)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Имейл след покупка, PDF фактура, EN/BG, социален вход, wishlist, графики в админ, 2FA  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — Екстри 1–7 + пароли + Office .doc</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Потребител</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Одобри всички точки 1–7; добави забравена парола и смяна на парола в потребителското меню; възможност за още езици по-късно; винаги аз да пускам сървъра; сейф на чата ~на 30 мин; другите сейфове след големи промени; всички сейф файлове и като .doc за Office 2003; пита дали да пуска Docker Desktop за DB (на хоста има къде да създаде DB).</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Асистент — направено</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>1. Имейл след покупка (SMTP или `data/mail-outbox/`) + PDF фактура  </w:t></w:r></w:p>
+<w:p><w:r><w:t>2. i18n BG/EN + LanguageSwitcher + регистър за бъдещи езици  </w:t></w:r></w:p>
+<w:p><w:r><w:t>3. Google / Facebook login (бутони; активират се с ключове в `.env`)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>4. Wishlist  </w:t></w:r></w:p>
+<w:p><w:r><w:t>5. Админ статистики / charts (`/admin/analytics`)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>6. 2FA за админ (`/admin/2fa`)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>7. Забравена парола + смяна на парола в менюто  </w:t></w:r></w:p>
+<w:p><w:r><w:t>8. Office 2003 `.doc` в `docs/office2003/`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>9. Docker: **не е нужен** локално (SQLite); на хостинг — MySQL/Postgres от панела  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Сървър: пуснат отново на http://localhost:3000  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — Валута EUR + BGN/USD преглед</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Потребител</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Цените да са в евро (официална валута от 01.01.2026). Опция за преизчисление в лева до края на 2026 и в USD по желание.</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Асистент</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Официална валута на магазина: **EUR** (плащане и съхранение)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Превключвател EUR / BGN / USD в хедъра</w:t></w:r></w:p>
+<w:p><w:r><w:t>- BGN: фиксиран курс 1 EUR = 1.95583 BGN; опцията се крие след 31.12.2026</w:t></w:r></w:p>
+<w:p><w:r><w:t>- USD: курс от `NEXT_PUBLIC_EUR_USD_RATE` (по подразбиране 1.08)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Seed/админ цени преминати към EUR</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — Full EN primary i18n</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### User</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>EN translation incomplete (~10%); footer not translated. Make everything English as primary; BG (and future languages) as translations.</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Agent</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- DEFAULT_LOCALE = `en`; LOCALES ordered EN then BG</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Expanded UI dictionaries (footer, catalog, product, home, cart, checkout, account…)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Product/Category English fields + `translations` JSON for BG</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Footer/Catalog/Home/Product/Cart wired to i18n; language switch reloads page for SSR</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Reseeded demo content EN + BG packs</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — End of day save / pause</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### User</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>„Сейф на всичко и навсякъде и почивка до утре!“</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Agent</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Обновени README/TODO/CHECKPOINT/CHAT_HISTORY (+ Office 2003 `.doc`)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Git commit + push към https://github.com/filipovrz/buy_evtinko</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Работата спира до следваща сесия (утре+)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>*(Ще се допълва с всяка следваща стъпка до края на чата.)*</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+    </wx:sect>
+  </w:body>
+</w:wordDocument>

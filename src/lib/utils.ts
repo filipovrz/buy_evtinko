@@ -1,15 +1,13 @@
 import { type ClassValue, clsx } from "clsx";
+import { formatMoney, STORE_CURRENCY, type DisplayCurrency } from "./currency";
 
 export function cn(...inputs: ClassValue[]) {
   return clsx(inputs);
 }
 
-export function formatPrice(amount: number, currency = "BGN") {
-  return new Intl.NumberFormat("bg-BG", {
-    style: "currency",
-    currency,
-    minimumFractionDigits: 2,
-  }).format(amount);
+/** Formats an amount already in the given currency code (default: EUR store). */
+export function formatPrice(amount: number, currency: string = STORE_CURRENCY) {
+  return formatMoney(amount, currency as DisplayCurrency);
 }
 
 export function formatBytes(bytes: number | null | undefined) {

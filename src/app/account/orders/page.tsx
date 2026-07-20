@@ -59,9 +59,14 @@ export default async function OrdersPage() {
                       )}
                     </div>
                     {dl && order.status === "PAID" && (
-                      <a href={`/api/download/${dl.token}`} className="btn-secondary !py-1.5 !text-xs">
-                        <Download className="h-3.5 w-3.5" /> Download
-                      </a>
+                      <span className="flex gap-2">
+                        <a href={`/api/download/${dl.token}`} className="btn-secondary !py-1.5 !text-xs">
+                          <Download className="h-3.5 w-3.5" /> Download
+                        </a>
+                        <a href={`/api/invoice/${order.id}`} className="btn-ghost !py-1.5 !text-xs">
+                          PDF
+                        </a>
+                      </span>
                     )}
                   </li>
                 );

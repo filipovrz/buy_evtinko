@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?mso-application progid="Word.Document"?>
+<w:wordDocument
+ xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
+ xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xml:space="preserve">
+  <o:DocumentProperties>
+    <o:Title>README</o:Title>
+    <o:Author>Auctions Evtinko Ltd.</o:Author>
+    <o:Company>Auctions Evtinko Ltd.</o:Company>
+  </o:DocumentProperties>
+  <w:body>
+    <wx:sect>
+      <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>README</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-20T23:58:22.819Z</w:t></w:r></w:p>
+      <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># Buy Software — Auctions Evtinko Ltd.</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Дигитален магазин за **софтуер, апликации, приложения и файлове** с платено изтегляне и автоматично одобрение след онлайн плащане.</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- **Домейн:** [buy-software.evtinko-bg.com](https://buy-software.evtinko-bg.com)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- **Марка:** Auctions Evtinko Ltd.</w:t></w:r></w:p>
+<w:p><w:r><w:t>- **GitHub:** [filipovrz/buy_evtinko](https://github.com/filipovrz/buy_evtinko)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Какво прави сайтът</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>| Функция | Описание |</w:t></w:r></w:p>
+<w:p><w:r><w:t>|--------|----------|</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Каталог | Продукти по категория/тип, търсене, филтри |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Количка | Локална количка в браузъра |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Guest checkout | Пазаруване **без акаунт** (име + имейл) |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Акаунт | Регистрация, вход, поръчки, изтегляния, профил |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Плащания | Карта (Stripe), PayPal, ePay.bg + демо режим |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Автоматично одобрение | След успешно плащане → статус PAID + download токени |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Админ панел | Продукти, цени, файлове, поръчки, категории, купони, потребители, съобщения, настройки |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Валута | **EUR** официално; преглед BGN (до 31.12.2026) и USD |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Езици | **English** основен; Bulgarian превод; готови за още локали |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Документи | `README` / `TODO` / `CHECKPOINT` / `CHAT_HISTORY` + `docs/office2003/*.doc` |</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Технологии</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- **Next.js 15** (App Router) + TypeScript + Tailwind CSS</w:t></w:r></w:p>
+<w:p><w:r><w:t>- **Prisma** + SQLite (лесно за старт; може MySQL/PostgreSQL в продукция)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- **NextAuth** (credentials)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- **Stripe / PayPal / ePay.bg** интеграции</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Локален старт (за разработчика)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>```bash</w:t></w:r></w:p>
+<w:p><w:r><w:t>npm install</w:t></w:r></w:p>
+<w:p><w:r><w:t>cp .env.example .env   # вече има .env за разработка</w:t></w:r></w:p>
+<w:p><w:r><w:t>npx prisma db push</w:t></w:r></w:p>
+<w:p><w:r><w:t>npm run db:seed</w:t></w:r></w:p>
+<w:p><w:r><w:t>npm run dev</w:t></w:r></w:p>
+<w:p><w:r><w:t>```</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Отвори [http://localhost:3000](http://localhost:3000)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>**Админ по подразбиране** (от seed / `.env`):</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Имейл: `admin@evtinko-bg.com`</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Парола: `ChangeMeAdmin123!`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>  **Сменете я преди публикуване!**</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Какво трябва да дадете вие (хостинг / плащания)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Не е нужно да програмирате. Подгответе следното (може с помощ от хостинг поддръжката):</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### 1. Хостинг</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Сайтът работи с **Node.js** (не е чист PHP сайт). Нужно е едно от:</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- **VPS** (препоръчително) — Ubuntu с Node.js 20+, или  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Хостинг с **Node.js приложение** (cPanel “Setup Node.js App”, Railway, Render, Vercel, DigitalOcean…)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Също:</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- **Домейн / поддомейн** `buy-software.evtinko-bg.com` → DNS A/CNAME към сървъра  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- **SSL сертификат** (Let’s Encrypt / от панела)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Имейл за поддръжка (напр. `support@evtinko-bg.com`)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### 2. Платежни акаунти (за реални плащания)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>| Метод | Какво да създадете | Какво да ми/на сървъра дадете |</w:t></w:r></w:p>
+<w:p><w:r><w:t>|-------|--------------------|-------------------------------|</w:t></w:r></w:p>
+<w:p><w:r><w:t>| **Карта** | Акаунт в [Stripe](https://dashboard.stripe.com) | `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`, webhook secret |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| **PayPal** | [PayPal Developer](https://developer.paypal.com) | `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, режим live/sandbox |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| **ePay.bg** | Търговски профил в [ePay.bg](https://www.epay.bg) | `EPAY_MIN`, `EPAY_SECRET`, `EPAY_CIN` |</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Докато ключовете липсват, в `.env` може `ENABLE_DEMO_PAYMENTS=true` за тест с „Демо плащане“ (автоматично одобрение).</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### 3. Сигурност преди пускане</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Сменете `NEXTAUTH_SECRET` (дълъг случаен низ)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Сменете админ паролата  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- `ENABLE_DEMO_PAYMENTS=false`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- `NEXTAUTH_URL` и `NEXT_PUBLIC_SITE_URL` = `https://buy-software.evtinko-bg.com`</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Админ панел</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>След вход като ADMIN: `/admin`</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Продукти + качване на файл за продажба  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Цени, лицензи, лимит на изтегляния  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Поръчки (и ръчно одобрение при нужда)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Категории, промо кодове, потребители, контактни съобщения  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Документация в репото</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>| Файл | Съдържание |</w:t></w:r></w:p>
+<w:p><w:r><w:t>|------|------------|</w:t></w:r></w:p>
+<w:p><w:r><w:t>| `TODO.md` | Задачи и приоритети |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| `CHECKPOINT.md` | Състояние / прогрес |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| `CHAT_HISTORY.md` | История на чата с асистента |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| `README.md` | Този файл |</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Лиценз / права</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>© Auctions Evtinko Ltd. Запазена марка. Всички права запазени.</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+    </wx:sect>
+  </w:body>
+</w:wordDocument>

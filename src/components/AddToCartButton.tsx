@@ -3,6 +3,7 @@
 import { addToCart } from "@/lib/cart";
 import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { useI18n } from "@/i18n/use-i18n";
 
 type Props = {
   product: {
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export function AddToCartButton({ product }: Props) {
+  const { t } = useI18n();
   const [added, setAdded] = useState(false);
 
   return (
@@ -28,7 +30,7 @@ export function AddToCartButton({ product }: Props) {
           slug: product.slug,
           name: product.name,
           price: product.price,
-          currency: product.currency,
+          currency: product.currency || "EUR",
           coverImage: product.coverImage,
         });
         setAdded(true);
@@ -36,7 +38,7 @@ export function AddToCartButton({ product }: Props) {
       }}
     >
       <ShoppingCart className="h-4 w-4" />
-      {added ? "Добавено в количката" : "Добави в количката"}
+      {added ? t.common.added : t.common.buy}
     </button>
   );
 }

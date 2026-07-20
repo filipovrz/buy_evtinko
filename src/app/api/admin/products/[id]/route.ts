@@ -32,7 +32,7 @@ export async function PUT(req: Request, ctx: Ctx) {
       description: body.description,
       price: Number(body.price),
       compareAtPrice: body.compareAtPrice != null ? Number(body.compareAtPrice) : null,
-      currency: body.currency || "BGN",
+      currency: body.currency || "EUR",
       type: body.type || "SOFTWARE",
       platform: body.platform || null,
       version: body.version || null,

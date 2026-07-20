@@ -25,11 +25,13 @@ export default async function AccountPage() {
         Здравейте, {session.user.name || session.user.email}
       </p>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {[
           { href: "/account/orders", title: "Поръчки", desc: "История и статуси" },
           { href: "/account/downloads", title: "Изтегляния", desc: "Линкове и лицензи" },
+          { href: "/account/wishlist", title: "Любими", desc: "Wishlist" },
           { href: "/account/profile", title: "Профил", desc: "Име, телефон, фирма" },
+          { href: "/account/password", title: "Смяна на парола", desc: "Сигурност на акаунта" },
           { href: "/catalog", title: "Каталог", desc: "Купи нов продукт" },
         ].map((item) => (
           <Link

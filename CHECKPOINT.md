@@ -3,57 +3,40 @@
 **Проект:** buy-software.evtinko-bg.com  
 **Марка:** Auctions Evtinko Ltd.  
 **Репо:** https://github.com/filipovrz/buy_evtinko  
-**Дата:** 2026-07-21
+**Дата:** 2026-07-21 (край на деня / pause until tomorrow)
 
 ---
 
-## Статус: MVP работи локално (build OK, seed OK, :3000 Ready)
+## Статус: запазено — почивка до утре
 
-### Изградено в тази сесия
+Работещ MVP магазин с екстри, EUR валута, EN като основен език (BG превод).
 
-1. Пълен Next.js 15 + Prisma + NextAuth магазин  
-2. Публичен фронтенд (начало, каталог, продукт, количка, checkout, акаунт, правни страници)  
-3. Платежен поток с автоматично одобрение (DEMO веднага; Stripe/PayPal/ePay чрез webhook/callback)  
-4. Админ панел за продукти/цени/файлове и останалото администриране  
-5. Документация: README, TODO, CHAT_HISTORY, този CHECKPOINT  
+### Готово към сейфа
 
-### Как да провериш локално
+| Област | Статус |
+|--------|--------|
+| Магазин / checkout / guest | OK |
+| Плащания Stripe/PayPal/ePay + DEMO | OK |
+| Админ панел + analytics + 2FA | OK |
+| Имейл + PDF фактура | OK |
+| Wishlist, forgot/change password | OK |
+| Валута EUR (+ BGN до 31.12.2026, USD) | OK |
+| i18n EN primary / BG translation | OK |
+| Документи md + Office 2003 .doc | OK |
+| GitHub | push при този сейф |
 
-```bash
-npm install
-npx prisma db push
-npm run db:seed
-npm run dev
-```
+### Следващ път (утре+)
 
-- Магазин: http://localhost:3000  
-- Админ: http://localhost:3000/admin (след вход)  
-- Демо плащане: добави в количка → Плащане → „Демо плащане“  
+1. Хостинг / DNS / SSL за `buy-software.evtinko-bg.com`  
+2. Реални ключове (плащания, SMTP, Google/Facebook)  
+3. Качване на реални файлове за продажба  
+4. Deploy  
 
-### Следващ checkpoint (планиран)
+### Достъп локално
 
-- `npm install` + seed успешни  
-- Push към GitHub  
-- Deploy инструкции според реалния хостинг на клиента  
-- Изключване на DEMO и включване на live ключове  
+- Сайт: http://localhost:3000  
+- Админ: `admin@evtinko-bg.com` / `ChangeMeAdmin123!` (смени преди прод)
 
-### Рискове / блокери
+### Office сейфове
 
-- Клиентът трябва да потвърди **Node.js-съвместим хостинг** (не само статичен/PHP без Node)  
-- Реални плащания чакат акаунти Stripe / PayPal / ePay  
-
-### Предложени екстри (чакат одобрение)
-
-| # | Функция | Полза |
-|---|---------|--------|
-| 1 | Имейл след покупка с линк за download | Клиентът не губи поръчката |
-| 2 | PDF фактура | За фирми |
-| 3 | EN + BG език | По-широк пазар |
-| 4 | Социален вход | По-лесна регистрация |
-| 5 | Wishlist / любими | Повече връщане на клиенти |
-| 6 | Графики в админ | Продажби по дни/продукти |
-| 7 | 2FA за админ | По-висока сигурност |
-
----
-
-*Обновявай този файл при всеки значим етап.*
+`docs/office2003/README.doc`, `TODO.doc`, `CHECKPOINT.doc`, `CHAT_HISTORY.doc`

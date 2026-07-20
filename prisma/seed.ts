@@ -3,6 +3,16 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+function bg(pack: {
+  name: string;
+  shortDesc: string;
+  description: string;
+  features: string[];
+  requirements: string;
+}) {
+  return JSON.stringify({ bg: pack });
+}
+
 async function main() {
   const adminEmail = (process.env.ADMIN_EMAIL || "admin@evtinko-bg.com").toLowerCase();
   const adminPassword = process.env.ADMIN_PASSWORD || "ChangeMeAdmin123!";
@@ -10,39 +20,64 @@ async function main() {
 
   await prisma.user.upsert({
     where: { email: adminEmail },
-    update: { role: "ADMIN", passwordHash: hash, name: "Администратор" },
+    update: { role: "ADMIN", passwordHash: hash, name: "Administrator", locale: "en" },
     create: {
       email: adminEmail,
-      name: "Администратор",
+      name: "Administrator",
       role: "ADMIN",
       passwordHash: hash,
+      locale: "en",
     },
   });
 
   const categories = [
     {
-      name: "Софтуер за бизнес",
+      name: "Business software",
       slug: "business-software",
-      description: "Инструменти за фирми, счетоводство и управление",
+      description: "Tools for companies, accounting and management",
       sortOrder: 1,
+      translations: JSON.stringify({
+        bg: {
+          name: "Софтуер за бизнес",
+          shortDesc: "Инструменти за фирми, счетоводство и управление",
+        },
+      }),
     },
     {
-      name: "Десктоп приложения",
+      name: "Desktop apps",
       slug: "desktop-apps",
-      description: "Windows и macOS приложения",
+      description: "Windows and macOS applications",
       sortOrder: 2,
+      translations: JSON.stringify({
+        bg: {
+          name: "Десктоп приложения",
+          shortDesc: "Windows и macOS приложения",
+        },
+      }),
     },
     {
-      name: "Мобилни апликации",
+      name: "Mobile apps",
       slug: "mobile-apps",
-      description: "Android и iOS пакети",
+      description: "Android and iOS packages",
       sortOrder: 3,
+      translations: JSON.stringify({
+        bg: {
+          name: "Мобилни апликации",
+          shortDesc: "Android и iOS пакети",
+        },
+      }),
     },
     {
-      name: "Шаблони и файлове",
+      name: "Templates & files",
       slug: "templates-files",
-      description: "Документи, шаблони, дигитални пакети",
+      description: "Documents, templates and digital packs",
       sortOrder: 4,
+      translations: JSON.stringify({
+        bg: {
+          name: "Шаблони и файлове",
+          shortDesc: "Документи, шаблони, дигитални пакети",
+        },
+      }),
     },
   ];
 
@@ -63,11 +98,12 @@ async function main() {
     {
       name: "Evtinko Inventory Pro",
       slug: "evtinko-inventory-pro",
-      shortDesc: "Система за складова наличност и фактуриране за МСП.",
+      shortDesc: "Inventory and invoicing system for SMEs.",
       description:
-        "Пълнофункционален софтуер за управление на склад, доставчици и продажби. Подходящ за търговски обекти и онлайн магазини. Включва лиценз за 1 работна станция и 12 месеца обновления.",
-      price: 149.0,
-      compareAtPrice: 199.0,
+        "Full-featured software for warehouse, suppliers and sales. Suitable for retail and online stores. Includes a 1-workstation license and 12 months of updates.",
+      price: 76.18,
+      compareAtPrice: 101.75,
+      currency: "EUR",
       type: "SOFTWARE",
       platform: "Windows",
       version: "3.2.0",
@@ -75,21 +111,35 @@ async function main() {
       isFeatured: true,
       categoryId: business?.id,
       features: JSON.stringify([
-        "Складови карти и баркод",
-        "Фактури и стокови разписки",
-        "Експорт към Excel/PDF",
-        "Многофирмен режим",
+        "Stock cards and barcodes",
+        "Invoices and delivery notes",
+        "Export to Excel/PDF",
+        "Multi-company mode",
       ]),
-      requirements: "Windows 10/11, 4 GB RAM, 200 MB свободно място",
+      requirements: "Windows 10/11, 4 GB RAM, 200 MB free space",
       coverImage: "/images/products/inventory.svg",
+      translations: bg({
+        name: "Evtinko Inventory Pro",
+        shortDesc: "Система за складова наличност и фактуриране за МСП.",
+        description:
+          "Пълнофункционален софтуер за управление на склад, доставчици и продажби. Подходящ за търговски обекти и онлайн магазини. Включва лиценз за 1 работна станция и 12 месеца обновления.",
+        features: [
+          "Складови карти и баркод",
+          "Фактури и стокови разписки",
+          "Експорт към Excel/PDF",
+          "Многофирмен режим",
+        ],
+        requirements: "Windows 10/11, 4 GB RAM, 200 MB свободно място",
+      }),
     },
     {
       name: "Auction Desk Companion",
       slug: "auction-desk-companion",
-      shortDesc: "Десктоп помощник за аукционни каталози и лотове.",
+      shortDesc: "Desktop helper for auction catalogues and lots.",
       description:
-        "Приложение за подготовка на каталози, лотове и оферти. Интегрира се с работния процес на Auctions Evtinko Ltd.",
-      price: 89.0,
+        "Application for preparing catalogues, lots and offers. Integrates with the Auctions Evtinko Ltd. workflow.",
+      price: 45.5,
+      currency: "EUR",
       type: "APPLICATION",
       platform: "Windows / macOS",
       version: "1.8.1",
@@ -97,66 +147,88 @@ async function main() {
       isFeatured: true,
       categoryId: desktop?.id,
       features: JSON.stringify([
-        "Импорт на CSV/Excel",
-        "Печат на етикети",
-        "Шаблони за каталози",
-        "Офлайн режим",
+        "CSV/Excel import",
+        "Label printing",
+        "Catalogue templates",
+        "Offline mode",
       ]),
-      requirements: "Windows 10+ или macOS 12+, 2 GB RAM",
+      requirements: "Windows 10+ or macOS 12+, 2 GB RAM",
       coverImage: "/images/products/auction-desk.svg",
+      translations: bg({
+        name: "Auction Desk Companion",
+        shortDesc: "Десктоп помощник за аукционни каталози и лотове.",
+        description:
+          "Приложение за подготовка на каталози, лотове и оферти. Интегрира се с работния процес на Auctions Evtinko Ltd.",
+        features: ["Импорт на CSV/Excel", "Печат на етикети", "Шаблони за каталози", "Офлайн режим"],
+        requirements: "Windows 10+ или macOS 12+, 2 GB RAM",
+      }),
     },
     {
       name: "Evtinko Field Mobile",
       slug: "evtinko-field-mobile",
-      shortDesc: "Мобилна апликация за теренни огледи и снимки.",
+      shortDesc: "Mobile app for field inspections and photos.",
       description:
-        "APK/IPA пакет за теренна работа — заснемане, бележки и синхронизация. Предназначен за партньори и екипи на терен.",
-      price: 59.0,
+        "APK/IPA package for field work — capture, notes and sync. Designed for partners and field teams.",
+      price: 30.17,
+      currency: "EUR",
       type: "APP",
       platform: "Android / iOS",
       version: "2.0.4",
       licenseType: "SINGLE",
       isFeatured: true,
       categoryId: mobile?.id,
-      features: JSON.stringify([
-        "Офлайн снимки",
-        "GPS бележки",
-        "Бърз експорт",
-        "Защитен вход",
-      ]),
-      requirements: "Android 10+ или iOS 15+",
+      features: JSON.stringify(["Offline photos", "GPS notes", "Quick export", "Secure login"]),
+      requirements: "Android 10+ or iOS 15+",
       coverImage: "/images/products/field-mobile.svg",
+      translations: bg({
+        name: "Evtinko Field Mobile",
+        shortDesc: "Мобилна апликация за теренни огледи и снимки.",
+        description:
+          "APK/IPA пакет за теренна работа — заснемане, бележки и синхронизация. Предназначен за партньори и екипи на терен.",
+        features: ["Офлайн снимки", "GPS бележки", "Бърз експорт", "Защитен вход"],
+        requirements: "Android 10+ или iOS 15+",
+      }),
     },
     {
-      name: "Пакет договори — търговия",
+      name: "Trade contracts pack",
       slug: "contract-pack-trade",
-      shortDesc: "Готови шаблони на договори и приложения (DOCX/PDF).",
+      shortDesc: "Ready contract templates and annexes (DOCX/PDF).",
       description:
-        "Дигитален пакет с редакционни шаблони за търговски договори, анекси и протоколи. Файловете се изтеглят след плащане.",
-      price: 39.0,
+        "Digital pack with editable commercial contract templates, annexes and protocols. Files download after payment.",
+      price: 19.94,
+      currency: "EUR",
       type: "FILE",
-      platform: "Документи",
+      platform: "Documents",
       version: "2026.1",
       licenseType: "LIFETIME",
       isFeatured: false,
       categoryId: files?.id,
       features: JSON.stringify([
-        "15+ шаблона",
-        "Редактируеми DOCX",
-        "PDF версии",
-        "Инструкции за попълване",
+        "15+ templates",
+        "Editable DOCX",
+        "PDF versions",
+        "Fill-in instructions",
       ]),
       requirements: "Microsoft Word / LibreOffice",
       coverImage: "/images/products/contracts.svg",
+      translations: bg({
+        name: "Пакет договори — търговия",
+        shortDesc: "Готови шаблони на договори и приложения (DOCX/PDF).",
+        description:
+          "Дигитален пакет с редакционни шаблони за търговски договори, анекси и протоколи. Файловете се изтеглят след плащане.",
+        features: ["15+ шаблона", "Редактируеми DOCX", "PDF версии", "Инструкции за попълване"],
+        requirements: "Microsoft Word / LibreOffice",
+      }),
     },
     {
       name: "Evtinko Reports Studio",
       slug: "evtinko-reports-studio",
-      shortDesc: "Генератор на отчети и аналитични табла.",
+      shortDesc: "Report generator and analytics dashboards.",
       description:
-        "Софтуер за визуализация на продажби, поръчки и KPI. Подходящ за мениджъри и счетоводители.",
-      price: 119.0,
-      compareAtPrice: 159.0,
+        "Software for visualising sales, orders and KPIs. Suitable for managers and accountants.",
+      price: 60.84,
+      compareAtPrice: 81.29,
+      currency: "EUR",
       type: "SOFTWARE",
       platform: "Windows / Web",
       version: "4.1.0",
@@ -164,35 +236,52 @@ async function main() {
       isFeatured: false,
       categoryId: business?.id,
       features: JSON.stringify([
-        "Готови дашборди",
-        "Планирани имейл отчети",
-        "Експорт PNG/PDF",
-        "До 5 потребителя",
+        "Ready dashboards",
+        "Scheduled email reports",
+        "PNG/PDF export",
+        "Up to 5 users",
       ]),
-      requirements: "Windows 10+ или модерен браузър",
+      requirements: "Windows 10+ or a modern browser",
       coverImage: "/images/products/reports.svg",
+      translations: bg({
+        name: "Evtinko Reports Studio",
+        shortDesc: "Генератор на отчети и аналитични табла.",
+        description:
+          "Софтуер за визуализация на продажби, поръчки и KPI. Подходящ за мениджъри и счетоводители.",
+        features: [
+          "Готови дашборди",
+          "Планирани имейл отчети",
+          "Експорт PNG/PDF",
+          "До 5 потребителя",
+        ],
+        requirements: "Windows 10+ или модерен браузър",
+      }),
     },
     {
       name: "UI Kit — Evtinko Commerce",
       slug: "ui-kit-evtinko-commerce",
-      shortDesc: "Дизайнерски файлове и компоненти за електронна търговия.",
+      shortDesc: "Design files and components for e-commerce.",
       description:
-        "Пакет Figma/SVG активи за магазини — бутони, карти, икони и layout блокове в бранда на Evtinko.",
-      price: 49.0,
+        "Figma/SVG asset pack for stores — buttons, cards, icons and layout blocks in the Evtinko brand.",
+      price: 25.05,
+      currency: "EUR",
       type: "OTHER",
       platform: "Figma / SVG",
       version: "1.0",
       licenseType: "LIFETIME",
       isFeatured: false,
       categoryId: files?.id,
-      features: JSON.stringify([
-        "Figma файл",
-        "SVG икони",
-        "Цветова палитра",
-        "Търговска лицензия",
-      ]),
-      requirements: "Figma или векторна програма",
+      features: JSON.stringify(["Figma file", "SVG icons", "Color palette", "Commercial license"]),
+      requirements: "Figma or a vector editor",
       coverImage: "/images/products/ui-kit.svg",
+      translations: bg({
+        name: "UI Kit — Evtinko Commerce",
+        shortDesc: "Дизайнерски файлове и компоненти за електронна търговия.",
+        description:
+          "Пакет Figma/SVG активи за магазини — бутони, карти, икони и layout блокове в бранда на Evtinko.",
+        features: ["Figma файл", "SVG икони", "Цветова палитра", "Търговска лицензия"],
+        requirements: "Figma или векторна програма",
+      }),
     },
   ];
 
@@ -217,12 +306,13 @@ async function main() {
   });
 
   const settings: Record<string, string> = {
-    site_tagline: "Дигитален магазин за софтуер и файлове",
+    site_tagline: "Digital store for software and files",
     support_email: "support@evtinko-bg.com",
     support_phone: "+359 000 000 000",
-    company_address: "България",
-    vat_note: "Цените са в BGN. Фактура по заявка.",
-    footer_text: "© Auctions Evtinko Ltd. Всички права запазени.",
+    company_address: "Bulgaria",
+    vat_note:
+      "Official currency: EUR (since 01.01.2026). BGN conversion until 31.12.2026. USD optional.",
+    footer_text: "© Auctions Evtinko Ltd. All rights reserved.",
   };
 
   for (const [key, value] of Object.entries(settings)) {
@@ -233,7 +323,7 @@ async function main() {
     });
   }
 
-  console.log("Seed OK");
+  console.log("Seed OK (EN primary + BG translations)");
   console.log(`Admin: ${adminEmail} / ${adminPassword}`);
 }
 

@@ -9,10 +9,12 @@ import {
   removeFromCart,
   updateCartQty,
 } from "@/lib/cart";
-import { formatPrice } from "@/lib/utils";
+import { Price } from "@/components/Price";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { useI18n } from "@/i18n/use-i18n";
 
 export default function CartPage() {
+  const { t } = useI18n();
   const [items, setItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
@@ -27,10 +29,10 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="container-page py-20 text-center">
-        <h1 className="section-title">Количката е празна</h1>
-        <p className="mt-3 text-ink-500">Добавете продукти от каталога.</p>
+        <h1 className="section-title">{t.cart.empty}</h1>
+        <p className="mt-3 text-ink-500">{t.cart.emptyHint}</p>
         <Link href="/catalog" className="btn-primary mt-8 inline-flex">
-          Към каталога
+          {t.cart.toCatalog}
         </Link>
       </div>
     );
@@ -38,7 +40,7 @@ export default function CartPage() {
 
   return (
     <div className="container-page py-10 md:py-14">
-      <h1 className="section-title mb-8">Количка</h1>
+      <h1 className="section-title mb-8">{t.cart.title}</h1>
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">
           {items.map((item) => (
@@ -59,7 +61,7 @@ export default function CartPage() {
                   {item.name}
                 </Link>
                 <p className="mt-1 text-sm text-ink-500">
-                  {formatPrice(item.price, item.currency)}
+                  <Price amount={item.price} />
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -87,27 +89,29 @@ export default function CartPage() {
                 </button>
               </div>
               <p className="min-w-[90px] text-right font-semibold">
-                {formatPrice(item.price * item.quantity, item.currency)}
+                <Price amount={item.price * item.quantity} />
               </p>
             </div>
           ))}
         </div>
         <aside className="h-fit rounded-2xl border border-ink-100 bg-white p-6 shadow-sm">
-          <h2 className="font-display text-xl font-semibold">Обобщение</h2>
+          <h2 className="font-display text-xl font-semibold">{t.cart.summary}</h2>
           <div className="mt-4 flex justify-between text-sm">
-            <span className="text-ink-500">Междинна сума</span>
-            <span className="font-medium">{formatPrice(total)}</span>
+            <span className="text-ink-500">{t.cart.subtotal}</span>
+            <span className="font-medium">
+              <Price amount={total} />
+            </span>
           </div>
           <div className="mt-2 flex justify-between border-t border-ink-100 pt-3 text-base">
-            <span className="font-semibold">Общо</span>
-            <span className="font-display text-xl font-semibold">{formatPrice(total)}</span>
+            <span className="font-semibold">{t.cart.total}</span>
+            <span className="font-display text-xl font-semibold">
+              <Price amount={total} showEurHint />
+            </span>
           </div>
           <Link href="/checkout" className="btn-primary mt-6 w-full">
-            Към плащане
+            {t.cart.checkout}
           </Link>
-          <p className="mt-3 text-center text-xs text-ink-400">
-            Може да платите с акаунт или като гост.
-          </p>
+          <p className="mt-3 text-center text-xs text-ink-400">{t.cart.guestHint}</p>
         </aside>
       </div>
     </div>

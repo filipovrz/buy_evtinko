@@ -17,13 +17,18 @@ model User {
   role          String    @default("CUSTOMER") // CUSTOMER | ADMIN
   phone         String?
   company       String?
+  locale        String    @default("en")
+  totpSecret    String?
+  totpEnabled   Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts Account[]
-  sessions Session[]
-  orders   Order[]
-  reviews  Review[]
+  accounts      Account[]
+  sessions      Session[]
+  orders        Order[]
+  reviews       Review[]
+  wishlists     Wishlist[]
+  passwordResets PasswordResetToken[]
 }
 
 model Account {
@@ -62,13 +67,14 @@ model VerificationToken {
 }
 
 model Category {
-  id          String    @id @default(cuid())
-  name        String
-  slug        String    @unique
-  description String?
-  sortOrder   Int       @default(0)
-  createdAt   DateTime  @default(now())
-  products    Product[]
+  id           String    @id @default(cuid())
+  name         String
+  slug         String    @unique
+  description  String?
+  translations String?   // JSON for non-EN locales
+  sortOrder    Int       @default(0)
+  createdAt    DateTime  @default(now())
+  products     Product[]
 }
 
 model Product {
@@ -79,7 +85,7 @@ model Product {
   description     String
   price           Float
   compareAtPrice  Float?
-  currency        String   @default("BGN")
+  currency        String   @default("EUR")
   type            String   @default("SOFTWARE") // SOFTWARE | APP | APPLICATION | FILE | OTHER
   platform        String?  // Windows, macOS, Android, iOS, Web, Cross-platform
   version         String?
@@ -87,6 +93,7 @@ model Product {
   filePath        String?
   fileSize        Int?
   mimeType        String?
+  translations   String?  // JSON: { "bg": { name, shortDesc, description, features, requirements }, ... }
   coverImage      String?
   gallery         String?  // JSON array of image URLs
   features        String?  // JSON array of feature strings
@@ -105,6 +112,7 @@ model Product {
   category   Category?    @relation(fields: [categoryId], references: [id])
   orderItems OrderItem[]
   reviews    Review[]
+  wishlists  Wishlist[]
 }
 
 model Order {
@@ -120,10 +128,13 @@ model Order {
   subtotal        Float
   tax             Float    @default(0)
   total           Float
-  currency        String   @default("BGN")
+  currency        String   @default("EUR")
   invoiceCompany  String?
   invoiceBulstat  String?
   invoiceAddress  String?
+  invoiceNumber   String?
+  invoicePath     String?
+  emailSentAt     DateTime?
   notes           String?
   paidAt          DateTime?
   createdAt       DateTime @default(now())
@@ -210,4 +221,27 @@ model ContactMessage {
   message   String
   isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+model Wishlist {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

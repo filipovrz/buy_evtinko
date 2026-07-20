@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
-import { formatPrice } from "@/lib/utils";
 import {
   LayoutDashboard,
   Package,
@@ -12,18 +10,22 @@ import {
   Settings,
   Ticket,
   MessageSquare,
+  BarChart3,
+  Shield,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 const nav = [
   { href: "/admin", label: "Табло", icon: LayoutDashboard },
+  { href: "/admin/analytics", label: "Статистики", icon: BarChart3 },
   { href: "/admin/products", label: "Продукти", icon: Package },
   { href: "/admin/orders", label: "Поръчки", icon: ShoppingBag },
   { href: "/admin/categories", label: "Категории", icon: Tags },
   { href: "/admin/coupons", label: "Промо кодове", icon: Ticket },
   { href: "/admin/users", label: "Потребители", icon: Users },
   { href: "/admin/messages", label: "Съобщения", icon: MessageSquare },
+  { href: "/admin/2fa", label: "2FA сигурност", icon: Shield },
   { href: "/admin/settings", label: "Настройки", icon: Settings },
 ];
 

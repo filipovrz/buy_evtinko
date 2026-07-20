@@ -53,4 +53,74 @@
 
 ---
 
+## 2026-07-21 — Екстри 1–7 + пароли + Office .doc
+
+### Потребител
+
+Одобри всички точки 1–7; добави забравена парола и смяна на парола в потребителското меню; възможност за още езици по-късно; винаги аз да пускам сървъра; сейф на чата ~на 30 мин; другите сейфове след големи промени; всички сейф файлове и като .doc за Office 2003; пита дали да пуска Docker Desktop за DB (на хоста има къде да създаде DB).
+
+### Асистент — направено
+
+1. Имейл след покупка (SMTP или `data/mail-outbox/`) + PDF фактура  
+2. i18n BG/EN + LanguageSwitcher + регистър за бъдещи езици  
+3. Google / Facebook login (бутони; активират се с ключове в `.env`)  
+4. Wishlist  
+5. Админ статистики / charts (`/admin/analytics`)  
+6. 2FA за админ (`/admin/2fa`)  
+7. Забравена парола + смяна на парола в менюто  
+8. Office 2003 `.doc` в `docs/office2003/`  
+9. Docker: **не е нужен** локално (SQLite); на хостинг — MySQL/Postgres от панела  
+
+Сървър: пуснат отново на http://localhost:3000  
+
+---
+
+## 2026-07-21 — Валута EUR + BGN/USD преглед
+
+### Потребител
+
+Цените да са в евро (официална валута от 01.01.2026). Опция за преизчисление в лева до края на 2026 и в USD по желание.
+
+### Асистент
+
+- Официална валута на магазина: **EUR** (плащане и съхранение)
+- Превключвател EUR / BGN / USD в хедъра
+- BGN: фиксиран курс 1 EUR = 1.95583 BGN; опцията се крие след 31.12.2026
+- USD: курс от `NEXT_PUBLIC_EUR_USD_RATE` (по подразбиране 1.08)
+- Seed/админ цени преминати към EUR
+
+---
+
+## 2026-07-21 — Full EN primary i18n
+
+### User
+
+EN translation incomplete (~10%); footer not translated. Make everything English as primary; BG (and future languages) as translations.
+
+### Agent
+
+- DEFAULT_LOCALE = `en`; LOCALES ordered EN then BG
+- Expanded UI dictionaries (footer, catalog, product, home, cart, checkout, account…)
+- Product/Category English fields + `translations` JSON for BG
+- Footer/Catalog/Home/Product/Cart wired to i18n; language switch reloads page for SSR
+- Reseeded demo content EN + BG packs
+
+---
+
+## 2026-07-21 — End of day save / pause
+
+### User
+
+„Сейф на всичко и навсякъде и почивка до утре!“
+
+### Agent
+
+- Обновени README/TODO/CHECKPOINT/CHAT_HISTORY (+ Office 2003 `.doc`)
+- Git commit + push към https://github.com/filipovrz/buy_evtinko
+- Работата спира до следваща сесия (утре+)
+
+---
+
 *(Ще се допълва с всяка следваща стъпка до края на чата.)*
+
+

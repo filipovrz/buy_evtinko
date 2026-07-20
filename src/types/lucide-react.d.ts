@@ -30,5 +30,6 @@ declare module "lucide-react" {
   export const Users: LucideIcon;
   export const Settings: LucideIcon;
   export const Ticket: LucideIcon;
-  export const MessageSquare: LucideIcon;
+  export const Heart: LucideIcon;
+  export const BarChart3: LucideIcon;
 }

@@ -47,7 +47,7 @@ export function ProductForm({
     description: product?.description || "",
     price: product?.price?.toString() || "",
     compareAtPrice: product?.compareAtPrice?.toString() || "",
-    currency: product?.currency || "BGN",
+    currency: product?.currency || "EUR",
     type: product?.type || "SOFTWARE",
     platform: product?.platform || "",
     version: product?.version || "",
@@ -145,7 +145,7 @@ export function ProductForm({
           </select>
         </div>
         <div>
-          <label className="label">Цена (BGN) *</label>
+          <label className="label">Цена (EUR) *</label>
           <input className="input" required type="number" step="0.01" value={form.price} onChange={(e) => set("price", e.target.value)} />
         </div>
         <div>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?mso-application progid="Word.Document"?>
+<w:wordDocument
+ xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
+ xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xml:space="preserve">
+  <o:DocumentProperties>
+    <o:Title>TODO</o:Title>
+    <o:Author>Auctions Evtinko Ltd.</o:Author>
+    <o:Company>Auctions Evtinko Ltd.</o:Company>
+  </o:DocumentProperties>
+  <w:body>
+    <wx:sect>
+      <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>TODO</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-20T23:58:22.827Z</w:t></w:r></w:p>
+      <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># TODO — Buy Software (Auctions Evtinko Ltd.)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>Последна актуализация: 2026-07-21 (сейф / pause до утре)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Готово</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Next.js магазин (каталог, продукт, количка, checkout)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Guest checkout + потребителски акаунт</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Плащания: Stripe, PayPal, ePay.bg + демо авто-одобрение</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Сигурни download токени след PAID</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Админ панел: продукти, цени, upload, поръчки, категории, купони, потребители, съобщения, настройки</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Страници: как работи, лицензи, поддръжка, контакт, условия, поверителност, връщания</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Seed продукти + админ потребител</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] README, TODO, CHECKPOINT, CHAT_HISTORY (+ Office 2003 .doc)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Бранд: Auctions Evtinko Ltd. / buy-software.evtinko-bg.com</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Имейл след покупка + PDF фактура</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] **EN основен език** / BG превод (разширяемо)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Google/Facebook login (с ключове)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Wishlist</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Админ графики</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] 2FA за админ</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Забравена / смяна на парола</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Валута **EUR** (+ BGN до 31.12.2026, USD по избор)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Следващи стъпки (утре+)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] Потвърждение на хостинг тип (VPS / Node.js хостинг)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] DNS за `buy-software.evtinko-bg.com`</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] SSL</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] MySQL на хостинга</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] Реални ключове Stripe / PayPal / ePay.bg / SMTP / Google / Facebook</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] Смяна на админ парола и `NEXTAUTH_SECRET`</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] Качване на реални файлове за продажба</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] Deploy</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [ ] Тест на реално плащане (малка сума)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Известни ограничения</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- SQLite по подразбиране — за прод → MySQL/PostgreSQL</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Без качени файлове download връща демо `.txt`</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Някои вторични страници (terms/support) може още да имат фиксиран текст — допълват се при нужда</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+    </wx:sect>
+  </w:body>
+</w:wordDocument>

@@ -27,7 +27,8 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
         </div>
         <h1 className="section-title">Плащането е успешно</h1>
         <p className="mt-3 text-ink-500">
-          Поръчката е одобрена автоматично. Можете да изтеглите файловете по-долу.
+          Поръчката е одобрена автоматично. Изпратихме имейл с линкове за изтегляне
+          (или записан в data/mail-outbox ако SMTP още не е настроен). Можете да изтеглите файловете по-долу.
         </p>
         {order && (
           <p className="mt-2 text-sm font-medium text-ink-700">
@@ -65,6 +66,11 @@ export default async function CheckoutSuccessPage({ searchParams }: Props) {
       )}
 
       <div className="mt-10 flex justify-center gap-3">
+        {order?.status === "PAID" && (
+          <a href={`/api/invoice/${order.id}`} className="btn-secondary">
+            Фактура PDF
+          </a>
+        )}
         <Link href="/account/orders" className="btn-secondary">
           Моите поръчки
         </Link>

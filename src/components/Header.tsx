@@ -4,24 +4,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { Menu, X, ShoppingCart, User, Search, Shield } from "lucide-react";
+import { Menu, X, ShoppingCart, User, Search, Shield, Heart } from "lucide-react";
 import { cartCount, readCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
-
-const nav = [
-  { href: "/catalog", label: "Каталог" },
-  { href: "/how-it-works", label: "Как работи" },
-  { href: "/pricing", label: "Лицензи" },
-  { href: "/support", label: "Поддръжка" },
-  { href: "/contact", label: "Контакт" },
-];
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { CurrencySwitcher } from "@/components/CurrencySwitcher";
+import { useI18n } from "@/i18n/use-i18n";
 
 export function Header() {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(0);
   const [accountOpen, setAccountOpen] = useState(false);
+
+  const nav = [
+    { href: "/catalog", label: t.nav.catalog },
+    { href: "/how-it-works", label: t.nav.howItWorks },
+    { href: "/pricing", label: t.nav.licenses },
+    { href: "/support", label: t.nav.support },
+    { href: "/contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const sync = () => setCount(cartCount(readCart()));
@@ -71,17 +75,28 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-1 sm:gap-2">
+          <CurrencySwitcher />
+          <LanguageSwitcher />
           <Link
             href="/catalog"
             className="rounded-lg p-2 text-ink-300 hover:bg-white/5 hover:text-white"
-            aria-label="Търсене"
+            aria-label={t.nav.search}
           >
             <Search className="h-5 w-5" />
           </Link>
+          {session?.user && (
+            <Link
+              href="/account/wishlist"
+              className="rounded-lg p-2 text-ink-300 hover:bg-white/5 hover:text-white"
+              aria-label={t.nav.wishlist}
+            >
+              <Heart className="h-5 w-5" />
+            </Link>
+          )}
           <Link
             href="/cart"
             className="relative rounded-lg p-2 text-ink-300 hover:bg-white/5 hover:text-white"
-            aria-label="Количка"
+            aria-label={t.nav.cart}
           >
             <ShoppingCart className="h-5 w-5" />
             {count > 0 && (
@@ -96,27 +111,33 @@ export function Header() {
               type="button"
               onClick={() => setAccountOpen((v) => !v)}
               className="rounded-lg p-2 text-ink-300 hover:bg-white/5 hover:text-white"
-              aria-label="Акаунт"
+              aria-label={t.nav.account}
             >
               <User className="h-5 w-5" />
             </button>
             {accountOpen && (
-              <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-ink-700 bg-ink-900 py-1 shadow-xl animate-fade-in">
+              <div className="absolute right-0 mt-2 w-60 overflow-hidden rounded-xl border border-ink-700 bg-ink-900 py-1 shadow-xl animate-fade-in">
                 {session?.user ? (
                   <>
                     <div className="border-b border-ink-700 px-3 py-2">
-                      <p className="truncate text-sm font-medium">{session.user.name || "Потребител"}</p>
+                      <p className="truncate text-sm font-medium">{session.user.name || "User"}</p>
                       <p className="truncate text-xs text-ink-400">{session.user.email}</p>
                     </div>
                     <Link href="/account" className="block px-3 py-2 text-sm hover:bg-white/5" onClick={() => setAccountOpen(false)}>
-                      Моят акаунт
+                      {t.nav.myAccount}
                     </Link>
                     <Link href="/account/orders" className="block px-3 py-2 text-sm hover:bg-white/5" onClick={() => setAccountOpen(false)}>
-                      Поръчки и изтегляния
+                      {t.nav.ordersDownloads}
+                    </Link>
+                    <Link href="/account/wishlist" className="block px-3 py-2 text-sm hover:bg-white/5" onClick={() => setAccountOpen(false)}>
+                      {t.nav.wishlist}
+                    </Link>
+                    <Link href="/account/password" className="block px-3 py-2 text-sm hover:bg-white/5" onClick={() => setAccountOpen(false)}>
+                      {t.nav.changePassword}
                     </Link>
                     {isAdmin && (
                       <Link href="/admin" className="flex items-center gap-2 px-3 py-2 text-sm text-accent-light hover:bg-white/5" onClick={() => setAccountOpen(false)}>
-                        <Shield className="h-4 w-4" /> Админ панел
+                        <Shield className="h-4 w-4" /> {t.nav.admin}
                       </Link>
                     )}
                     <button
@@ -124,19 +145,22 @@ export function Header() {
                       className="block w-full px-3 py-2 text-left text-sm text-red-300 hover:bg-white/5"
                       onClick={() => signOut({ callbackUrl: "/" })}
                     >
-                      Изход
+                      {t.nav.logout}
                     </button>
                   </>
                 ) : (
                   <>
                     <Link href="/login" className="block px-3 py-2 text-sm hover:bg-white/5" onClick={() => setAccountOpen(false)}>
-                      Вход
+                      {t.nav.login}
                     </Link>
                     <Link href="/register" className="block px-3 py-2 text-sm hover:bg-white/5" onClick={() => setAccountOpen(false)}>
-                      Регистрация
+                      {t.nav.register}
+                    </Link>
+                    <Link href="/forgot-password" className="block px-3 py-2 text-sm hover:bg-white/5" onClick={() => setAccountOpen(false)}>
+                      {t.nav.forgotPassword}
                     </Link>
                     <Link href="/checkout" className="block px-3 py-2 text-sm text-accent-light hover:bg-white/5" onClick={() => setAccountOpen(false)}>
-                      Пазаруване без акаунт
+                      {t.nav.guestCheckout}
                     </Link>
                   </>
                 )}
@@ -148,7 +172,7 @@ export function Header() {
             type="button"
             className="rounded-lg p-2 text-ink-300 hover:bg-white/5 lg:hidden"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Меню"
+            aria-label="Menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>

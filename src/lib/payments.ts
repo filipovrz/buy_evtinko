@@ -69,7 +69,7 @@ export async function createOrderFromCheckout(input: CheckoutInput) {
   }
 
   const total = Math.max(0, subtotal - discount);
-  const currency = products[0]?.currency || "BGN";
+  const currency = products[0]?.currency || "EUR";
 
   const order = await prisma.order.create({
     data: {
@@ -148,7 +148,17 @@ export async function markOrderPaid(orderId: string, paymentId?: string) {
     });
   }
 
-  return updated;
+  try {
+    const { sendOrderPaidEmail } = await import("./order-email");
+    await sendOrderPaidEmail(updated.id);
+  } catch (e) {
+    console.error("Order email failed", e);
+  }
+
+  return await prisma.order.findUnique({
+    where: { id: updated.id },
+    include: { items: true, downloads: true },
+  });
 }
 
 export function encodeEpayChecksum(data: string, secret: string) {
@@ -201,7 +211,7 @@ export async function createStripeCheckoutSession(order: {
     line_items: order.items.map((item) => ({
       quantity: item.quantity,
       price_data: {
-        currency: order.currency.toLowerCase() === "bgn" ? "bgn" : order.currency.toLowerCase(),
+        currency: order.currency.toLowerCase() === "eur" ? "eur" : order.currency.toLowerCase(),
         unit_amount: Math.round(item.unitPrice * 100),
         product_data: { name: item.productName },
       },
@@ -246,8 +256,8 @@ export async function createPayPalOrder(order: {
   const tokenData = await tokenRes.json();
   if (!tokenData.access_token) throw new Error("PayPal auth failed");
 
-  const currency = order.currency === "BGN" ? "EUR" : order.currency;
-  // Note: PayPal may not support BGN — convert hint shown to user; store original amount
+  const currency = order.currency === "BGN" ? "EUR" : order.currency || "EUR";
+  // PayPal checkout uses EUR (store currency)
   const createRes = await fetch(`${base}/v2/checkout/orders`, {
     method: "POST",
     headers: {

@@ -1,9 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import { formatPrice, formatBytes, parseJsonArray, PRODUCT_TYPES } from "@/lib/utils";
+import { formatBytes, parseJsonArray } from "@/lib/utils";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { WishlistButton } from "@/components/WishlistButton";
+import { Price } from "@/components/Price";
 import Link from "next/link";
 import { Check, Monitor, Package } from "lucide-react";
+import { getServerDictionary } from "@/i18n/server";
+import { localizeContent } from "@/i18n/localize";
 
 export const dynamic = "force-dynamic";
 
@@ -11,41 +15,56 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
+  const { locale } = await getServerDictionary();
   const product = await prisma.product.findUnique({ where: { slug } });
-  if (!product) return { title: "Продукт" };
+  if (!product) return { title: "Product" };
+  const loc = localizeContent(product, locale);
   return {
-    title: product.metaTitle || product.name,
-    description: product.metaDescription || product.shortDesc,
+    title: product.metaTitle || loc.name,
+    description: product.metaDescription || loc.shortDesc,
   };
 }
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
+  const { locale, t } = await getServerDictionary();
   const product = await prisma.product.findUnique({
     where: { slug },
     include: { category: true },
   });
   if (!product || !product.isActive) notFound();
 
-  const features = parseJsonArray(product.features);
-  const typeLabel = PRODUCT_TYPES.find((t) => t.value === product.type)?.label || product.type;
+  const loc = localizeContent(product, locale);
+  const features = parseJsonArray(loc.features);
+  const typeLabel =
+    t.productTypes[product.type as keyof typeof t.productTypes] || product.type;
+  const categoryLoc = product.category
+    ? localizeContent(
+        {
+          name: product.category.name,
+          shortDesc: product.category.description,
+          translations: product.category.translations,
+        },
+        locale
+      )
+    : null;
 
   return (
     <div className="container-page py-10 md:py-14">
       <nav className="mb-6 text-sm text-ink-500">
         <Link href="/catalog" className="hover:text-brand-600">
-          Каталог
+          {t.nav.catalog}
         </Link>
-        {product.category && (
+        {product.category && categoryLoc && (
           <>
             <span className="mx-2">/</span>
             <Link href={`/catalog?category=${product.category.slug}`} className="hover:text-brand-600">
-              {product.category.name}
+              {categoryLoc.name}
             </Link>
           </>
         )}
         <span className="mx-2">/</span>
-        <span className="text-ink-800">{product.name}</span>
+        <span className="text-ink-800">{loc.name}</span>
       </nav>
 
       <div className="grid gap-10 lg:grid-cols-2">
@@ -53,7 +72,7 @@ export default async function ProductPage({ params }: Props) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.coverImage || "/images/products/placeholder.svg"}
-            alt={product.name}
+            alt={loc.name}
             className="aspect-[4/3] w-full object-cover"
           />
         </div>
@@ -76,30 +95,37 @@ export default async function ProductPage({ params }: Props) {
           </div>
 
           <h1 className="font-display text-3xl font-semibold tracking-tight text-ink-950 md:text-4xl">
-            {product.name}
+            {loc.name}
           </h1>
-          <p className="mt-3 text-lg text-ink-600">{product.shortDesc}</p>
+          <p className="mt-3 text-lg text-ink-600">{loc.shortDesc}</p>
 
           <div className="mt-6 flex items-end gap-3">
             <p className="font-display text-4xl font-semibold text-ink-950">
-              {formatPrice(product.price, product.currency)}
+              <Price amount={product.price} showEurHint />
             </p>
             {product.compareAtPrice && product.compareAtPrice > product.price && (
               <p className="pb-1 text-lg text-ink-400 line-through">
-                {formatPrice(product.compareAtPrice, product.currency)}
+                <Price amount={product.compareAtPrice} />
               </p>
             )}
           </div>
 
           <p className="mt-2 text-sm text-ink-500">
-            Лиценз: {product.licenseType} · До {product.downloadLimit} изтегляния след покупка
+            {t.product.officialCurrency} · {t.product.license}: {product.licenseType} ·{" "}
+            {product.downloadLimit} {t.product.downloads}
             {product.fileSize ? ` · ${formatBytes(product.fileSize)}` : ""}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <AddToCartButton product={product} />
+            <AddToCartButton
+              product={{
+                ...product,
+                name: loc.name,
+              }}
+            />
+            <WishlistButton productId={product.id} />
             <Link href="/cart" className="btn-secondary">
-              Към количката
+              {t.product.toCart}
             </Link>
           </div>
 
@@ -117,19 +143,21 @@ export default async function ProductPage({ params }: Props) {
       </div>
 
       <div className="mt-14 grid gap-8 lg:grid-cols-3">
-        <div className="lg:col-span-2 rounded-2xl border border-ink-100 bg-white p-6 md:p-8">
-          <h2 className="font-display text-xl font-semibold">Описание</h2>
-          <p className="mt-4 whitespace-pre-line leading-relaxed text-ink-600">{product.description}</p>
+        <div className="rounded-2xl border border-ink-100 bg-white p-6 md:p-8 lg:col-span-2">
+          <h2 className="font-display text-xl font-semibold">{t.product.description}</h2>
+          <p className="mt-4 whitespace-pre-line leading-relaxed text-ink-600">{loc.description}</p>
         </div>
         <div className="rounded-2xl border border-ink-100 bg-white p-6 md:p-8">
-          <h2 className="font-display text-xl font-semibold">Изисквания</h2>
+          <h2 className="font-display text-xl font-semibold">{t.product.requirements}</h2>
           <p className="mt-4 text-sm leading-relaxed text-ink-600">
-            {product.requirements || "Няма посочени специални изисквания."}
+            {loc.requirements || t.product.noRequirements}
           </p>
           <div className="mt-6 border-t border-ink-100 pt-6 text-sm text-ink-500">
-            <p>Продавач: Auctions Evtinko Ltd.</p>
-            <p className="mt-1">Плащане: карта · PayPal · ePay.bg</p>
-            <p className="mt-1">Изтегляне: автоматично след плащане</p>
+            <p>
+              {t.product.seller}: {t.common.company}
+            </p>
+            <p className="mt-1">{t.product.payment}</p>
+            <p className="mt-1">{t.product.downloadAuto}</p>
           </div>
         </div>
       </div>

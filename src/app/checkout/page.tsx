@@ -5,7 +5,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CartItem, cartTotal, clearCart, readCart } from "@/lib/cart";
-import { formatPrice, PAYMENT_METHODS } from "@/lib/utils";
+import { PAYMENT_METHODS } from "@/lib/utils";
+import { Price } from "@/components/Price";
 
 export default function CheckoutPage() {
   const { data: session } = useSession();
@@ -190,7 +191,7 @@ export default function CheckoutPage() {
                 <span className="text-ink-600">
                   {i.name} × {i.quantity}
                 </span>
-                <span className="font-medium">{formatPrice(i.price * i.quantity, i.currency)}</span>
+                <span className="font-medium"><Price amount={i.price * i.quantity} /></span>
               </li>
             ))}
           </ul>
@@ -205,14 +206,14 @@ export default function CheckoutPage() {
           </div>
           <div className="mt-4 flex justify-between">
             <span className="font-semibold">Общо</span>
-            <span className="font-display text-2xl font-semibold">{formatPrice(total)}</span>
+            <span className="font-display text-2xl font-semibold"><Price amount={total} showEurHint /></span>
           </div>
           {error && <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
           <button type="submit" disabled={loading} className="btn-primary mt-6 w-full !py-3">
             {loading ? "Обработка..." : "Плати сега"}
           </button>
           <p className="mt-3 text-center text-xs text-ink-400">
-            Auctions Evtinko Ltd. · Защитено плащане
+            Плащането е в EUR · Auctions Evtinko Ltd.
           </p>
         </aside>
       </form>

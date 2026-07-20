@@ -32,7 +32,24 @@
 
 ### Статус към края на тази стъпка
 
-MVP кодът е в проекта. Предстоят: `npm install`, seed, локален тест, push към GitHub, deploy според хостинга.
+- `npm install` + Prisma generate — OK  
+- `prisma db push` + seed — OK (админ + демо продукти)  
+- `next build` — успешен  
+- Dev сървър: http://localhost:3000  
+- Git инициализиран; push към GitHub чака одобрение / credentials  
+- Документи: README, TODO, CHECKPOINT, CHAT_HISTORY  
+
+### Какво се иска от клиента (хостинг)
+
+1. Хостинг с **Node.js 20+** (VPS или Node App в cPanel) — не само PHP  
+2. DNS за `buy-software.evtinko-bg.com`  
+3. SSL  
+4. Ключове: Stripe, PayPal, ePay.bg (за реални плащания)  
+5. Смяна на админ парола преди публикуване  
+
+### Предложени екстри (чака одобрение)
+
+Имейл след покупка, PDF фактура, EN/BG, социален вход, wishlist, графики в админ, 2FA  
 
 ---
 

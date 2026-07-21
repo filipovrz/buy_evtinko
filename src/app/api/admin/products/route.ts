@@ -1,23 +1,16 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { requirePermission } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { slugify } from "@/lib/utils";
 
-async function assertAdmin() {
-  const session = await getServerSession(authOptions);
-  if (!session?.user || session.user.role !== "ADMIN") return null;
-  return session;
-}
-
 export async function GET() {
-  if (!(await assertAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!(await requirePermission("products"))) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const products = await prisma.product.findMany({ orderBy: { updatedAt: "desc" } });
   return NextResponse.json({ products });
 }
 
 export async function POST(req: Request) {
-  if (!(await assertAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  if (!(await requirePermission("products"))) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   try {
     const body = await req.json();
     if (!body.name || !body.shortDesc || !body.description || body.price == null) {

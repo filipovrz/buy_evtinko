@@ -15,7 +15,11 @@ export async function getAdminNotifyEmail() {
   if (process.env.ADMIN_NOTIFY_EMAIL) return process.env.ADMIN_NOTIFY_EMAIL;
   const setting = await prisma.siteSetting.findUnique({ where: { key: "support_email" } });
   if (setting?.value) return setting.value;
-  const admin = await prisma.user.findFirst({ where: { role: "ADMIN" }, select: { email: true } });
+  const admin = await prisma.user.findFirst({
+    where: { role: { in: ["SUPERADMIN", "ADMIN"] } },
+    orderBy: { role: "desc" },
+    select: { email: true },
+  });
   return admin?.email || "admin@evtinko-bg.com";
 }
 

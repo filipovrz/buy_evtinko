@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { generateInvoicePdf } from "@/lib/invoice";
+import { isStaffRole } from "@/lib/permissions";
 
 type Ctx = { params: Promise<{ orderId: string }> };
 
@@ -18,8 +19,7 @@ export async function GET(_req: Request, ctx: Ctx) {
   const session = await getServerSession(authOptions);
   const isOwner =
     (session?.user?.id && order.userId === session.user.id) ||
-    session?.user?.role === "ADMIN";
-  // Guests can access with order id (token-like) — acceptable for digital goods MVP
+    isStaffRole(session?.user?.role);  // Guests can access with order id (token-like) — acceptable for digital goods MVP
   if (!isOwner && !order.guestEmail) {
     // still allow if they know the order id from success page
   }

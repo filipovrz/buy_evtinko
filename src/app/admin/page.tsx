@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
 import { getServerDictionary } from "@/i18n/server";
+import { guardAdminPage } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,7 @@ export async function generateMetadata() {
 }
 
 export default async function AdminDashboard() {
+  await guardAdminPage("dashboard");
   const { t } = await getServerDictionary();
   const [products, orders, users, revenue, pending, messages] = await Promise.all([
     prisma.product.count(),

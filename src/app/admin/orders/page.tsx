@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/utils";
 import { MarkPaidButton } from "@/components/admin/MarkPaidButton";
 import { getServerDictionary } from "@/i18n/server";
+import { guardAdminPage } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,7 @@ export async function generateMetadata() {
 }
 
 export default async function AdminOrdersPage() {
+  await guardAdminPage("orders");
   const { t } = await getServerDictionary();
   const orders = await prisma.order.findMany({
     orderBy: { createdAt: "desc" },

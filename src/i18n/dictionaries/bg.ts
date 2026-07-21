@@ -74,7 +74,7 @@ export const bg: Dictionary = {
   product: {
     license: "Лиценз",
     downloads: "изтегляния след покупка",
-    officialCurrency: "Официална валута: EUR",
+    officialCurrency: "Официална валута: EUR · BGN в скоби до 31.12.2026 (курс 1.95583)",
     toCart: "Към количката",
     description: "Описание",
     requirements: "Изисквания",
@@ -255,5 +255,9 @@ export const bg: Dictionary = {
     twoFaScan: "Сканирайте QR кода с Google Authenticator / Authy, после въведете код.",
     twoFaEnabledMsg: "2FA е активирана.",
     twoFaDisabledMsg: "2FA е изключена.",
+    permissions: "Права",
+    allPermissions: "Всички права",
+    usersHint: "Управление на клиенти",
+    usersSuperHint: "Клиенти и създаване на админи с избрани права",
   },
 };

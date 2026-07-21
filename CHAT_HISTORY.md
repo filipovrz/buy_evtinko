@@ -147,6 +147,25 @@ EN translation incomplete (~10%); footer not translated. Make everything English
 
 ---
 
+## 2026-07-21 — EUR+BGN dual price + SUPERADMIN rights + save
+
+### User
+
+1. BGN price smaller in parentheses next to EUR until 31.12.2026; auto convert 1.95583 from admin EUR price  
+2. Make current admin SUPERADMIN; allow adding admins with selected permissions  
+3. „Сейф навсякъде и на всичко и почивка.“
+
+### Agent — done
+
+- `Price`: EUR primary + smaller `(X,XX лв.)` via rate `1.95583` until end of 2026; admin form shows BGN preview  
+- Roles: `SUPERADMIN` | `ADMIN` (+ `permissions` JSON) | `CUSTOMER`  
+- Seed/default admin promoted to SUPERADMIN  
+- Superadmin creates ADMIN with checkboxes: dashboard, analytics, products, orders, categories, coupons, users, messages, settings  
+- Nav + APIs gated by `requirePermission`  
+- Docs + Office `.doc` + git push; pause  
+
+---
+
 *(Ще се допълва с всяка следваща стъпка до края на чата.)*
 
 

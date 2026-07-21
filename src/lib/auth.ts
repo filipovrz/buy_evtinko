@@ -7,6 +7,12 @@ import bcrypt from "bcryptjs";
 import { verifyTotpCode } from "./totp";
 import { prisma } from "./prisma";
 import type { Adapter } from "next-auth/adapters";
+import {
+  type AdminPermission,
+  hasPermission,
+  isStaffRole,
+  parsePermissions,
+} from "./permissions";
 
 const providers: NextAuthOptions["providers"] = [
   CredentialsProvider({
@@ -25,8 +31,7 @@ const providers: NextAuthOptions["providers"] = [
       const valid = await bcrypt.compare(credentials.password, user.passwordHash);
       if (!valid) return null;
 
-      // Credentials accounts must verify email (admin-created / OAuth may already be verified)
-      if (!user.emailVerified && user.role !== "ADMIN") {
+      if (!user.emailVerified && !isStaffRole(user.role)) {
         throw new Error("EMAIL_NOT_VERIFIED");
       }
 
@@ -43,6 +48,7 @@ const providers: NextAuthOptions["providers"] = [
         name: user.name,
         image: user.image,
         role: user.role,
+        permissions: parsePermissions(user.permissions),
       };
     },
   }),
@@ -66,6 +72,14 @@ if (process.env.FACEBOOK_CLIENT_ID && process.env.FACEBOOK_CLIENT_SECRET) {
       allowDangerousEmailAccountLinking: true,
     })
   );
+}
+
+async function loadStaffClaims(userId: string) {
+  const dbUser = await prisma.user.findUnique({ where: { id: userId } });
+  return {
+    role: dbUser?.role || "CUSTOMER",
+    permissions: parsePermissions(dbUser?.permissions),
+  };
 }
 
 export const authOptions: NextAuthOptions = {
@@ -93,18 +107,14 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async jwt({ token, user, trigger, session }) {
-      if (user) {
+    async jwt({ token, user }) {
+      if (user?.id) {
         token.id = user.id;
-        const dbUser = await prisma.user.findUnique({ where: { id: user.id } });
-        token.role = dbUser?.role || (user as { role?: string }).role || "CUSTOMER";
       }
-      if (trigger === "update" && session?.role) {
-        token.role = session.role;
-      }
-      if (token.id && !token.role) {
-        const dbUser = await prisma.user.findUnique({ where: { id: token.id as string } });
-        token.role = dbUser?.role || "CUSTOMER";
+      if (token.id) {
+        const claims = await loadStaffClaims(token.id as string);
+        token.role = claims.role;
+        token.permissions = claims.permissions;
       }
       return token;
     },
@@ -112,6 +122,7 @@ export const authOptions: NextAuthOptions = {
       if (session.user) {
         session.user.id = token.id as string;
         session.user.role = (token.role as string) || "CUSTOMER";
+        session.user.permissions = (token.permissions as AdminPermission[]) || [];
       }
       return session;
     },
@@ -122,10 +133,36 @@ export function getSession() {
   return getServerSession(authOptions);
 }
 
+/** Any staff (ADMIN or SUPERADMIN) may enter /admin */
 export async function requireAdmin() {
   const session = await getSession();
-  if (!session?.user || session.user.role !== "ADMIN") {
+  if (!session?.user || !isStaffRole(session.user.role)) {
     return null;
   }
   return session;
+}
+
+export async function requireSuperAdmin() {
+  const session = await requireAdmin();
+  if (!session || session.user.role !== "SUPERADMIN") return null;
+  return session;
+}
+
+export async function requirePermission(key: AdminPermission) {
+  const session = await requireAdmin();
+  if (!session) return null;
+  if (
+    !hasPermission(session.user.role, session.user.permissions, key)
+  ) {
+    return null;
+  }
+  return session;
+}
+
+export function sessionHasPermission(
+  session: { user: { role: string; permissions?: AdminPermission[] } } | null,
+  key: AdminPermission
+) {
+  if (!session?.user) return false;
+  return hasPermission(session.user.role, session.user.permissions, key);
 }

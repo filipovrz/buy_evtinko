@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { getServerDictionary } from "@/i18n/server";
 import { MessagesManager } from "@/components/admin/MessagesManager";
+import { guardAdminPage } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,7 @@ export async function generateMetadata() {
 }
 
 export default async function AdminMessagesPage() {
+  await guardAdminPage("messages");
   const { t } = await getServerDictionary();
   const messages = await prisma.contactMessage.findMany({
     orderBy: { createdAt: "desc" },

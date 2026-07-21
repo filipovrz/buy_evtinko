@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { CurrencySwitcher } from "@/components/CurrencySwitcher";
 import { useI18n } from "@/i18n/use-i18n";
+import { isStaffRole } from "@/lib/permissions";
 
 export function Header() {
   const pathname = usePathname();
@@ -40,7 +41,7 @@ export function Header() {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const isAdmin = session?.user?.role === "ADMIN";
+  const isAdmin = isStaffRole(session?.user?.role);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/90 text-white backdrop-blur-md">

@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { CategoryManager } from "@/components/admin/CategoryManager";
 import { getServerDictionary } from "@/i18n/server";
+import { guardAdminPage } from "@/lib/admin-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,7 @@ export async function generateMetadata() {
 }
 
 export default async function AdminCategoriesPage() {
+  await guardAdminPage("categories");
   const { t } = await getServerDictionary();
   const categories = await prisma.category.findMany({
     orderBy: { sortOrder: "asc" },

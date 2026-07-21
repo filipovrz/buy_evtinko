@@ -75,7 +75,7 @@ export const en = {
   product: {
     license: "License",
     downloads: "downloads after purchase",
-    officialCurrency: "Official currency: EUR",
+    officialCurrency: "Official currency: EUR · BGN shown in parentheses until 31.12.2026 (rate 1.95583)",
     toCart: "Go to cart",
     description: "Description",
     requirements: "Requirements",
@@ -256,6 +256,10 @@ export const en = {
     twoFaScan: "Scan the QR with Google Authenticator / Authy, then enter a code.",
     twoFaEnabledMsg: "2FA enabled.",
     twoFaDisabledMsg: "2FA disabled.",
+    permissions: "Permissions",
+    allPermissions: "All permissions",
+    usersHint: "Manage customers",
+    usersSuperHint: "Manage customers and create admins with selected permissions",
   },
 } as const;
 

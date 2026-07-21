@@ -21,20 +21,28 @@ async function main() {
   await prisma.user.upsert({
     where: { email: adminEmail },
     update: {
-      role: "ADMIN",
+      role: "SUPERADMIN",
       passwordHash: hash,
       name: "Administrator",
       locale: "en",
       emailVerified: new Date(),
+      permissions: null,
     },
     create: {
       email: adminEmail,
       name: "Administrator",
-      role: "ADMIN",
+      role: "SUPERADMIN",
       passwordHash: hash,
       locale: "en",
       emailVerified: new Date(),
+      permissions: null,
     },
+  });
+
+  // Promote any legacy single ADMIN without perms to SUPERADMIN if it matches seed email
+  await prisma.user.updateMany({
+    where: { email: adminEmail, role: "ADMIN" },
+    data: { role: "SUPERADMIN", permissions: null },
   });
 
   const categories = [

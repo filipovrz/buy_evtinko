@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, sessionHasPermission } from "@/lib/auth";
 import { getServerDictionary } from "@/i18n/server";
+import { isSuperAdmin, type AdminPermission } from "@/lib/permissions";
 import {
   LayoutDashboard,
   Package,
@@ -21,21 +22,25 @@ export const dynamic = "force-dynamic";
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await requireAdmin();
   if (!session) redirect("/login?callbackUrl=/admin");
-  const { t } = await getServerDictionary();
+  const { t, locale } = await getServerDictionary();
+  const superAdmin = isSuperAdmin(session.user.role);
 
-  const nav = [
-    { href: "/admin", label: t.admin.dashboard, icon: LayoutDashboard },
-    { href: "/admin/analytics", label: t.admin.analytics, icon: BarChart3 },
-    { href: "/admin/products", label: t.admin.products, icon: Package },
-    { href: "/admin/orders", label: t.admin.orders, icon: ShoppingBag },
-    { href: "/admin/categories", label: t.admin.categories, icon: Tags },
-    { href: "/admin/coupons", label: t.admin.coupons, icon: Ticket },
-    { href: "/admin/users", label: t.admin.users, icon: Users },
-    { href: "/admin/messages", label: t.admin.messages, icon: Headphones },
-    { href: "/admin/profile", label: t.admin.profile, icon: User },
-    { href: "/admin/2fa", label: t.admin.twoFa, icon: Shield },
-    { href: "/admin/settings", label: t.admin.settings, icon: Settings },
+  const nav: { href: string; label: string; icon: typeof User; perm: AdminPermission | null }[] = [
+    { href: "/admin", label: t.admin.dashboard, icon: LayoutDashboard, perm: "dashboard" },
+    { href: "/admin/analytics", label: t.admin.analytics, icon: BarChart3, perm: "analytics" },
+    { href: "/admin/products", label: t.admin.products, icon: Package, perm: "products" },
+    { href: "/admin/orders", label: t.admin.orders, icon: ShoppingBag, perm: "orders" },
+    { href: "/admin/categories", label: t.admin.categories, icon: Tags, perm: "categories" },
+    { href: "/admin/coupons", label: t.admin.coupons, icon: Ticket, perm: "coupons" },
+    { href: "/admin/users", label: t.admin.users, icon: Users, perm: "users" },
+    { href: "/admin/messages", label: t.admin.messages, icon: Headphones, perm: "messages" },
+    { href: "/admin/profile", label: t.admin.profile, icon: User, perm: null },
+    { href: "/admin/2fa", label: t.admin.twoFa, icon: Shield, perm: null },
+    { href: "/admin/settings", label: t.admin.settings, icon: Settings, perm: "settings" },
   ];
+
+  const visible = nav.filter((item) => !item.perm || sessionHasPermission(session, item.perm));
+  const badge = superAdmin ? "SUPER" : "ADMIN";
 
   return (
     <div className="min-h-screen bg-ink-50">
@@ -43,9 +48,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="container-page flex h-14 items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="rounded bg-accent px-2 py-0.5 text-xs font-bold uppercase tracking-wider">
-              Admin
+              {badge}
             </span>
             <span className="text-sm text-ink-300">{t.common.company}</span>
+            {locale === "bg" && !superAdmin && (
+              <span className="hidden text-xs text-ink-400 sm:inline">
+                {session.user.permissions?.length || 0} права
+              </span>
+            )}
           </div>
           <Link href="/" className="text-sm text-ink-300 hover:text-white">
             {t.admin.backToSite}
@@ -55,7 +65,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <div className="container-page grid gap-8 py-8 lg:grid-cols-[240px_1fr]">
         <aside className="h-fit rounded-2xl border border-ink-100 bg-white p-3">
           <nav className="space-y-0.5">
-            {nav.map((item) => (
+            {visible.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

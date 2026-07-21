@@ -13,19 +13,19 @@
   <w:body>
     <wx:sect>
       <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>CHECKPOINT</w:t></w:r></w:p>
-      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:20:43.124Z</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:34:53.534Z</w:t></w:r></w:p>
       <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># CHECKPOINT — Buy Software</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>**Проект:** buy-software.evtinko-bg.com  </w:t></w:r></w:p>
 <w:p><w:r><w:t>**Марка:** Auctions Evtinko Ltd.  </w:t></w:r></w:p>
 <w:p><w:r><w:t>**Репо:** https://github.com/filipovrz/buy_evtinko  </w:t></w:r></w:p>
-<w:p><w:r><w:t>**Дата:** 2026-07-21 (night save / pause until tomorrow)</w:t></w:r></w:p>
+<w:p><w:r><w:t>**Дата:** 2026-07-21 (сейф / почивка)</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>---</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
-<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Статус: запазено — почивка до утре</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Статус: запазено — почивка</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
-<w:p><w:r><w:t>Работещ магазин + пълен админ CRUD + email verification.</w:t></w:r></w:p>
+<w:p><w:r><w:t>Работещ магазин + SUPERADMIN / права на админи + EUR/BGN dual price.</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Готово към този сейф</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
@@ -33,18 +33,18 @@
 <w:p><w:r><w:t>|--------|--------|</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Магазин / checkout / guest | OK |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Плащания Stripe/PayPal/ePay + DEMO | OK |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Админ: products delete, categories edit, users CRUD, messages CRUD | OK |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Админ профил (име/парола) | OK |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Админ CRUD (products/categories/users/messages) | OK |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| **SUPERADMIN** + админи с грануларни права | OK |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Админ профил (име/парола) + 2FA | OK |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Админ UI следва EN/BG locale | OK |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Email verify при регистрация | OK |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Имейл към админ (регистрация, контакт, платена поръчка) | OK |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Имейл към купувач след PAID + PDF | OK |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Валута EUR (+ BGN / USD) | OK |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Email verify + известия | OK |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Цени: EUR + по-малка BGN в скоби (×1.95583 до 31.12.2026) | OK |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Валута EUR (+ BGN / USD switcher) | OK |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| i18n EN primary / BG | OK |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Документи md + Office 2003 .doc | OK |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| GitHub | push при този сейф |</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
-<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Следващ път (утре+)</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Следващ път</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>1. Хостинг / DNS / SSL  </w:t></w:r></w:p>
 <w:p><w:r><w:t>2. Реални ключове (плащания, SMTP, OAuth)  </w:t></w:r></w:p>
@@ -54,8 +54,8 @@
 <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Достъп локално</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>- Сайт: http://localhost:3000  </w:t></w:r></w:p>
-<w:p><w:r><w:t>- Админ: `admin@evtinko-bg.com` / `ChangeMeAdmin123!`  </w:t></w:r></w:p>
-<w:p><w:r><w:t>- Без SMTP: писмата отиват в `data/mail-outbox/`</w:t></w:r></w:p>
+<w:p><w:r><w:t>- Superadmin: `admin@evtinko-bg.com` / `ChangeMeAdmin123!`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Без SMTP: писма в `data/mail-outbox/`</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Office сейфове</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/utils";
+import { isStaffRole } from "@/lib/permissions";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Моят акаунт" };
@@ -45,7 +46,7 @@ export default async function AccountPage() {
         ))}
       </div>
 
-      {session.user.role === "ADMIN" && (
+      {isStaffRole(session.user.role) && (
         <Link href="/admin" className="btn-accent mt-6 inline-flex">
           Отвори админ панел
         </Link>

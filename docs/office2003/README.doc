@@ -13,7 +13,7 @@
   <w:body>
     <wx:sect>
       <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>README</w:t></w:r></w:p>
-      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:20:43.115Z</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:34:53.309Z</w:t></w:r></w:p>
       <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># Buy Software — Auctions Evtinko Ltd.</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>Дигитален магазин за **софтуер, апликации, приложения и файлове** с платено изтегляне и автоматично одобрение след онлайн плащане.</w:t></w:r></w:p>
@@ -34,8 +34,8 @@
 <w:p><w:r><w:t>| Акаунт | Регистрация, вход, поръчки, изтегляния, профил |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Плащания | Карта (Stripe), PayPal, ePay.bg + демо режим |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Автоматично одобрение | След успешно плащане → статус PAID + download токени |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Админ панел | Продукти, цени, файлове, поръчки, категории, купони, потребители, съобщения, настройки |</w:t></w:r></w:p>
-<w:p><w:r><w:t>| Валута | **EUR** официално; преглед BGN (до 31.12.2026) и USD |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Админ панел | SUPERADMIN + админи с права; продукти, поръчки, категории, купони, потребители, съобщения, настройки |</w:t></w:r></w:p>
+<w:p><w:r><w:t>| Валута | **EUR** официално; BGN в скоби до 31.12.2026 (курс 1.95583); USD по избор |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Езици | **English** основен; Bulgarian превод; готови за още локали |</w:t></w:r></w:p>
 <w:p><w:r><w:t>| Документи | `README` / `TODO` / `CHECKPOINT` / `CHAT_HISTORY` + `docs/office2003/*.doc` |</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
@@ -62,11 +62,12 @@
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>Отвори [http://localhost:3000](http://localhost:3000)</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
-<w:p><w:r><w:t>**Админ по подразбиране** (от seed / `.env`):</w:t></w:r></w:p>
+<w:p><w:r><w:t>**Админ по подразбиране** (от seed / `.env`) — **SUPERADMIN**:</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>- Имейл: `admin@evtinko-bg.com`</w:t></w:r></w:p>
 <w:p><w:r><w:t>- Парола: `ChangeMeAdmin123!`  </w:t></w:r></w:p>
-<w:p><w:r><w:t>  **Сменете я преди публикуване!**</w:t></w:r></w:p>
+<w:p><w:r><w:t>  **Сменете я преди публикуване!**  </w:t></w:r></w:p>
+<w:p><w:r><w:t>  Суперадминът създава други админи с избрани права в Users.</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>---</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>

@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PRODUCT_TYPES, parseJsonArray } from "@/lib/utils";
+import { EUR_TO_BGN, formatBgnCompact, isBgnDisplayAllowed } from "@/lib/currency";
 
 type Category = { id: string; name: string };
 type Product = {
@@ -147,10 +148,21 @@ export function ProductForm({
         <div>
           <label className="label">Цена (EUR) *</label>
           <input className="input" required type="number" step="0.01" value={form.price} onChange={(e) => set("price", e.target.value)} />
+          {isBgnDisplayAllowed() && form.price && !Number.isNaN(parseFloat(form.price)) && (
+            <p className="mt-1 text-xs text-ink-500">
+              Shoppers see: EUR + smaller ({formatBgnCompact(parseFloat(form.price))}) · rate {EUR_TO_BGN} until
+              31.12.2026
+            </p>
+          )}
         </div>
         <div>
-          <label className="label">Стара цена</label>
+          <label className="label">Стара цена (EUR)</label>
           <input className="input" type="number" step="0.01" value={form.compareAtPrice} onChange={(e) => set("compareAtPrice", e.target.value)} />
+          {isBgnDisplayAllowed() &&
+            form.compareAtPrice &&
+            !Number.isNaN(parseFloat(form.compareAtPrice)) && (
+              <p className="mt-1 text-xs text-ink-500">({formatBgnCompact(parseFloat(form.compareAtPrice))})</p>
+            )}
         </div>
         <div>
           <label className="label">Платформа</label>

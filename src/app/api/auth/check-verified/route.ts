@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { isStaffRole } from "@/lib/permissions";
 
 /** Used by login UI when NextAuth masks custom authorize errors */
 export async function POST(req: Request) {
@@ -14,6 +15,6 @@ export async function POST(req: Request) {
     select: { emailVerified: true, role: true, passwordHash: true },
   });
   if (!user?.passwordHash) return NextResponse.json({ verified: true });
-  if (user.role === "ADMIN") return NextResponse.json({ verified: true });
+  if (isStaffRole(user.role)) return NextResponse.json({ verified: true });
   return NextResponse.json({ verified: !!user.emailVerified });
 }

@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { requireAdmin } from "@/lib/auth";
+import { requirePermission } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-  if (!(await requireAdmin())) {
+  if (!(await requirePermission("analytics"))) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

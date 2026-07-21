@@ -71,6 +71,21 @@ export function formatMoney(amount: number, currency: DisplayCurrency | StoreCur
   }).format(amount);
 }
 
+/** EUR amount → BGN at official fixed rate (for dual display until 31.12.2026) */
+export function eurToBgn(amountEur: number): number {
+  return amountEur * EUR_TO_BGN;
+}
+
+/** Compact BGN text for parentheses, e.g. "25,05 лв." */
+export function formatBgnCompact(amountEur: number, locale = "bg-BG"): string {
+  const bgn = eurToBgn(amountEur);
+  const num = new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(bgn);
+  return `${num} лв.`;
+}
+
 /**
  * Format a store (EUR) amount for the selected display currency.
  * Optional secondary line for dual display (e.g. EUR primary + BGN hint).
@@ -82,9 +97,9 @@ export function formatStorePrice(
 ) {
   const converted = convertFromEur(amountEur, display);
   const primary = formatMoney(converted, display);
-  if (!opts?.withApproxNote || display === "EUR") return primary;
-  if (display === "BGN") {
-    return `${primary} ≈ ${formatMoney(amountEur, "EUR")}`;
+  if (display === "EUR" && isBgnDisplayAllowed()) {
+    return `${primary} (${formatBgnCompact(amountEur)})`;
   }
+  if (!opts?.withApproxNote || display === "EUR") return primary;
   return `${primary} ≈ ${formatMoney(amountEur, "EUR")}`;
 }

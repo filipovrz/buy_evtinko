@@ -13,7 +13,7 @@
   <w:body>
     <wx:sect>
       <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>CHAT_HISTORY</w:t></w:r></w:p>
-      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:20:43.126Z</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:34:53.536Z</w:t></w:r></w:p>
       <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># Chat History — buy-software.evtinko-bg.com</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>Сесия с AI асистента (Composer / Cursor). Обновява се до края на работата.</w:t></w:r></w:p>
@@ -160,6 +160,25 @@
 <w:p><w:r><w:t>7. Register → verification email + block login until verified; admin notified on register/contact/paid order; buyer order email unchanged  </w:t></w:r></w:p>
 <w:p><w:r><w:t>8. Prisma `ContactMessage.type` / `targetUserId` / `updatedAt`  </w:t></w:r></w:p>
 <w:p><w:r><w:t>9. Docs + Office `.doc` + git push; pause until tomorrow  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — EUR+BGN dual price + SUPERADMIN rights + save</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### User</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>1. BGN price smaller in parentheses next to EUR until 31.12.2026; auto convert 1.95583 from admin EUR price  </w:t></w:r></w:p>
+<w:p><w:r><w:t>2. Make current admin SUPERADMIN; allow adding admins with selected permissions  </w:t></w:r></w:p>
+<w:p><w:r><w:t>3. „Сейф навсякъде и на всичко и почивка.“</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Agent — done</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- `Price`: EUR primary + smaller `(X,XX лв.)` via rate `1.95583` until end of 2026; admin form shows BGN preview  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Roles: `SUPERADMIN` | `ADMIN` (+ `permissions` JSON) | `CUSTOMER`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Seed/default admin promoted to SUPERADMIN  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Superadmin creates ADMIN with checkboxes: dashboard, analytics, products, orders, categories, coupons, users, messages, settings  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Nav + APIs gated by `requirePermission`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Docs + Office `.doc` + git push; pause  </w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>---</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>

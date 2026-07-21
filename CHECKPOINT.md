@@ -3,13 +3,13 @@
 **Проект:** buy-software.evtinko-bg.com  
 **Марка:** Auctions Evtinko Ltd.  
 **Репо:** https://github.com/filipovrz/buy_evtinko  
-**Дата:** 2026-07-21 (night save / pause until tomorrow)
+**Дата:** 2026-07-21 (сейф / почивка)
 
 ---
 
-## Статус: запазено — почивка до утре
+## Статус: запазено — почивка
 
-Работещ магазин + пълен админ CRUD + email verification.
+Работещ магазин + SUPERADMIN / права на админи + EUR/BGN dual price.
 
 ### Готово към този сейф
 
@@ -17,18 +17,18 @@
 |--------|--------|
 | Магазин / checkout / guest | OK |
 | Плащания Stripe/PayPal/ePay + DEMO | OK |
-| Админ: products delete, categories edit, users CRUD, messages CRUD | OK |
-| Админ профил (име/парола) | OK |
+| Админ CRUD (products/categories/users/messages) | OK |
+| **SUPERADMIN** + админи с грануларни права | OK |
+| Админ профил (име/парола) + 2FA | OK |
 | Админ UI следва EN/BG locale | OK |
-| Email verify при регистрация | OK |
-| Имейл към админ (регистрация, контакт, платена поръчка) | OK |
-| Имейл към купувач след PAID + PDF | OK |
-| Валута EUR (+ BGN / USD) | OK |
+| Email verify + известия | OK |
+| Цени: EUR + по-малка BGN в скоби (×1.95583 до 31.12.2026) | OK |
+| Валута EUR (+ BGN / USD switcher) | OK |
 | i18n EN primary / BG | OK |
 | Документи md + Office 2003 .doc | OK |
 | GitHub | push при този сейф |
 
-### Следващ път (утре+)
+### Следващ път
 
 1. Хостинг / DNS / SSL  
 2. Реални ключове (плащания, SMTP, OAuth)  
@@ -38,8 +38,8 @@
 ### Достъп локално
 
 - Сайт: http://localhost:3000  
-- Админ: `admin@evtinko-bg.com` / `ChangeMeAdmin123!`  
-- Без SMTP: писмата отиват в `data/mail-outbox/`
+- Superadmin: `admin@evtinko-bg.com` / `ChangeMeAdmin123!`  
+- Без SMTP: писма в `data/mail-outbox/`
 
 ### Office сейфове
 

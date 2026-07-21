@@ -2,24 +2,27 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useI18n } from "@/i18n/use-i18n";
 
-export function MarkPaidButton({ orderId }: { orderId: string }) {
+export function DeleteProductButton({ productId }: { productId: string }) {
+  const { t } = useI18n();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   return (
     <button
       type="button"
-      className="btn-secondary !text-xs"
+      className="text-sm text-red-600 hover:underline"
       disabled={loading}
       onClick={async () => {
+        if (!confirm(t.admin.confirmDelete)) return;
         setLoading(true);
-        await fetch(`/api/admin/orders/${orderId}/mark-paid`, { method: "POST" });
+        await fetch(`/api/admin/products/${productId}`, { method: "DELETE" });
         setLoading(false);
         router.refresh();
       }}
     >
-      {loading ? "..." : "Mark paid"}
+      {t.admin.delete}
     </button>
   );
 }

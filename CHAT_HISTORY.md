@@ -107,7 +107,7 @@ EN translation incomplete (~10%); footer not translated. Make everything English
 
 ---
 
-## 2026-07-21 — End of day save / pause
+## 2026-07-21 — End of day save / pause (earlier)
 
 ### User
 
@@ -117,7 +117,33 @@ EN translation incomplete (~10%); footer not translated. Make everything English
 
 - Обновени README/TODO/CHECKPOINT/CHAT_HISTORY (+ Office 2003 `.doc`)
 - Git commit + push към https://github.com/filipovrz/buy_evtinko
-- Работата спира до следваща сесия (утре+)
+
+---
+
+## 2026-07-21 — Admin CRUD + EN admin + email verify (night)
+
+### User
+
+- Products: delete buttons  
+- Categories: edit buttons  
+- Users: add / edit / delete  
+- Messages: create (general/personal) + edit + delete  
+- Admin panel still BG → EN via locale  
+- Admin menu to change name + password  
+- Email notifications for admin & users; registration with email confirmation  
+- Then save everywhere and rest until tomorrow  
+
+### Agent — done
+
+1. Products list: Edit + Delete  
+2. Categories: Edit + Delete (PUT API)  
+3. Users: CRUD UI + `/api/admin/users`  
+4. Messages: create GENERAL/PERSONAL, edit, delete + emails to customers  
+5. Admin UI dictionaries + layout/pages follow locale (EN default)  
+6. `/admin/profile` — name + password  
+7. Register → verification email + block login until verified; admin notified on register/contact/paid order; buyer order email unchanged  
+8. Prisma `ContactMessage.type` / `targetUserId` / `updatedAt`  
+9. Docs + Office `.doc` + git push; pause until tomorrow  
 
 ---
 

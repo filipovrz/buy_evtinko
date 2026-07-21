@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import fs from "fs";
 import path from "path";
+import { prisma } from "./prisma";
 
 type MailPayload = {
   to: string;
@@ -9,6 +10,19 @@ type MailPayload = {
   text?: string;
   attachments?: { filename: string; path?: string; content?: Buffer; contentType?: string }[];
 };
+
+export async function getAdminNotifyEmail() {
+  if (process.env.ADMIN_NOTIFY_EMAIL) return process.env.ADMIN_NOTIFY_EMAIL;
+  const setting = await prisma.siteSetting.findUnique({ where: { key: "support_email" } });
+  if (setting?.value) return setting.value;
+  const admin = await prisma.user.findFirst({ where: { role: "ADMIN" }, select: { email: true } });
+  return admin?.email || "admin@evtinko-bg.com";
+}
+
+export async function notifyAdmin(subject: string, html: string) {
+  const to = await getAdminNotifyEmail();
+  return sendMail({ to, subject, html });
+}
 
 function getTransport() {
   const host = process.env.SMTP_HOST;

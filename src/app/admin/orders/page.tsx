@@ -1,12 +1,17 @@
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/utils";
 import { MarkPaidButton } from "@/components/admin/MarkPaidButton";
+import { getServerDictionary } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Поръчки — Админ" };
+
+export async function generateMetadata() {
+  const { t } = await getServerDictionary();
+  return { title: `${t.admin.orders} — Admin` };
+}
 
 export default async function AdminOrdersPage() {
+  const { t } = await getServerDictionary();
   const orders = await prisma.order.findMany({
     orderBy: { createdAt: "desc" },
     include: { items: true, user: true },
@@ -15,8 +20,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold">Поръчки</h1>
-      <p className="mt-1 text-sm text-ink-500">Автоматично одобрени след плащане</p>
+      <h1 className="font-display text-3xl font-semibold">{t.admin.orders}</h1>
 
       <div className="mt-8 space-y-4">
         {orders.map((o) => (
@@ -25,7 +29,7 @@ export default async function AdminOrdersPage() {
               <div>
                 <p className="font-semibold">{o.orderNumber}</p>
                 <p className="text-sm text-ink-500">
-                  {new Date(o.createdAt).toLocaleString("bg-BG")} ·{" "}
+                  {new Date(o.createdAt).toLocaleString("en-GB")} ·{" "}
                   {o.user?.email || o.guestEmail || "—"} · {o.paymentMethod}
                 </p>
               </div>
@@ -52,11 +56,8 @@ export default async function AdminOrdersPage() {
             )}
           </article>
         ))}
-        {orders.length === 0 && <p className="text-ink-500">Няма поръчки.</p>}
+        {orders.length === 0 && <p className="text-ink-500">{t.account.noOrders}</p>}
       </div>
-      <p className="mt-4 text-xs text-ink-400">
-        <Link href="/admin">← Табло</Link>
-      </p>
     </div>
   );
 }

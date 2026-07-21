@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { formatPrice } from "@/lib/utils";
+import { useI18n } from "@/i18n/use-i18n";
 
 type Analytics = {
   days: { date: string; revenue: number; orders: number }[];
@@ -10,6 +11,7 @@ type Analytics = {
 };
 
 export default function AdminAnalyticsPage() {
+  const { t } = useI18n();
   const [data, setData] = useState<Analytics | null>(null);
 
   useEffect(() => {
@@ -20,33 +22,30 @@ export default function AdminAnalyticsPage() {
   }, []);
 
   if (!data) {
-    return <p className="text-ink-500">Зареждане на статистики...</p>;
+    return <p className="text-ink-500">{t.common.loading}</p>;
   }
 
   const maxRev = Math.max(...data.days.map((d) => d.revenue), 1);
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold">Статистики / Charts</h1>
-      <p className="mt-1 text-sm text-ink-500">Приходи и поръчки (платени)</p>
+      <h1 className="font-display text-3xl font-semibold">{t.admin.analytics}</h1>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <div className="rounded-2xl border border-ink-100 bg-white p-5">
-          <p className="text-sm text-ink-500">Общо приходи</p>
+          <p className="text-sm text-ink-500">{t.admin.revenue}</p>
           <p className="font-display text-3xl font-semibold">{formatPrice(data.totals.revenue)}</p>
         </div>
         <div className="rounded-2xl border border-ink-100 bg-white p-5">
-          <p className="text-sm text-ink-500">Платени поръчки</p>
+          <p className="text-sm text-ink-500">{t.admin.paidOrders}</p>
           <p className="font-display text-3xl font-semibold">{data.totals.orders}</p>
         </div>
       </div>
 
       <div className="mt-8 rounded-2xl border border-ink-100 bg-white p-6">
-        <h2 className="font-semibold">Приходи по дни (последни 30)</h2>
+        <h2 className="font-semibold">{t.admin.revenueByDay}</h2>
         <div className="mt-6 flex h-48 items-end gap-1">
-          {data.days.length === 0 && (
-            <p className="text-sm text-ink-400">Няма данни още — направете демо покупка.</p>
-          )}
+          {data.days.length === 0 && <p className="text-sm text-ink-400">{t.admin.noSales}</p>}
           {data.days.map((d) => (
             <div key={d.date} className="group relative flex flex-1 flex-col items-center justify-end">
               <div
@@ -64,7 +63,7 @@ export default function AdminAnalyticsPage() {
       </div>
 
       <div className="mt-8 rounded-2xl border border-ink-100 bg-white p-6">
-        <h2 className="font-semibold">Топ продукти</h2>
+        <h2 className="font-semibold">{t.admin.topProducts}</h2>
         <ul className="mt-4 space-y-3">
           {data.products.map((p) => (
             <li key={p.name} className="flex items-center justify-between gap-3 text-sm">
@@ -74,7 +73,7 @@ export default function AdminAnalyticsPage() {
               </span>
             </li>
           ))}
-          {data.products.length === 0 && <li className="text-ink-400">Няма продажби.</li>}
+          {data.products.length === 0 && <li className="text-ink-400">{t.admin.noSales}</li>}
         </ul>
       </div>
     </div>

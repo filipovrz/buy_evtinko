@@ -1,6 +1,6 @@
 # TODO — Buy Software (Auctions Evtinko Ltd.)
 
-Последна актуализация: 2026-07-21 (сейф / pause до утре)
+Последна актуализация: 2026-07-21 (night сейф / pause до утре)
 
 ## Готово
 
@@ -9,6 +9,10 @@
 - [x] Плащания: Stripe, PayPal, ePay.bg + демо авто-одобрение
 - [x] Сигурни download токени след PAID
 - [x] Админ панел: продукти, цени, upload, поръчки, категории, купони, потребители, съобщения, настройки
+- [x] Админ CRUD: delete продукти, edit категории, users add/edit/delete, messages create/edit/delete
+- [x] Админ профил (име + парола)
+- [x] Админ UI следва език (EN primary)
+- [x] Email verification при регистрация + известия (админ/потребители)
 - [x] Страници: как работи, лицензи, поддръжка, контакт, условия, поверителност, връщания
 - [x] Seed продукти + админ потребител
 - [x] README, TODO, CHECKPOINT, CHAT_HISTORY (+ Office 2003 .doc)

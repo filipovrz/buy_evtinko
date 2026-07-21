@@ -13,7 +13,7 @@
   <w:body>
     <wx:sect>
       <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>CHAT_HISTORY</w:t></w:r></w:p>
-      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-20T23:58:22.830Z</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:20:43.126Z</w:t></w:r></w:p>
       <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># Chat History — buy-software.evtinko-bg.com</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>Сесия с AI асистента (Composer / Cursor). Обновява се до края на работата.</w:t></w:r></w:p>
@@ -123,7 +123,7 @@
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>---</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
-<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — End of day save / pause</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — End of day save / pause (earlier)</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### User</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
@@ -133,7 +133,33 @@
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>- Обновени README/TODO/CHECKPOINT/CHAT_HISTORY (+ Office 2003 `.doc`)</w:t></w:r></w:p>
 <w:p><w:r><w:t>- Git commit + push към https://github.com/filipovrz/buy_evtinko</w:t></w:r></w:p>
-<w:p><w:r><w:t>- Работата спира до следваща сесия (утре+)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>---</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## 2026-07-21 — Admin CRUD + EN admin + email verify (night)</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### User</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Products: delete buttons  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Categories: edit buttons  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Users: add / edit / delete  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Messages: create (general/personal) + edit + delete  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Admin panel still BG → EN via locale  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Admin menu to change name + password  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Email notifications for admin &amp; users; registration with email confirmation  </w:t></w:r></w:p>
+<w:p><w:r><w:t>- Then save everywhere and rest until tomorrow  </w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>### Agent — done</w:t></w:r></w:p>
+<w:p><w:r><w:t> </w:t></w:r></w:p>
+<w:p><w:r><w:t>1. Products list: Edit + Delete  </w:t></w:r></w:p>
+<w:p><w:r><w:t>2. Categories: Edit + Delete (PUT API)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>3. Users: CRUD UI + `/api/admin/users`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>4. Messages: create GENERAL/PERSONAL, edit, delete + emails to customers  </w:t></w:r></w:p>
+<w:p><w:r><w:t>5. Admin UI dictionaries + layout/pages follow locale (EN default)  </w:t></w:r></w:p>
+<w:p><w:r><w:t>6. `/admin/profile` — name + password  </w:t></w:r></w:p>
+<w:p><w:r><w:t>7. Register → verification email + block login until verified; admin notified on register/contact/paid order; buyer order email unchanged  </w:t></w:r></w:p>
+<w:p><w:r><w:t>8. Prisma `ContactMessage.type` / `targetUserId` / `updatedAt`  </w:t></w:r></w:p>
+<w:p><w:r><w:t>9. Docs + Office `.doc` + git push; pause until tomorrow  </w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:t>---</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>

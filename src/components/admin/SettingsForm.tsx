@@ -1,8 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useI18n } from "@/i18n/use-i18n";
 
 export function SettingsForm({ initial }: { initial: Record<string, string> }) {
+  const { t } = useI18n();
   const [form, setForm] = useState({
     site_tagline: initial.site_tagline || "",
     support_email: initial.support_email || "",
@@ -20,7 +22,7 @@ export function SettingsForm({ initial }: { initial: Record<string, string> }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     });
-    setMsg(res.ok ? "Запазено." : "Грешка.");
+    setMsg(res.ok ? t.common.success : t.common.error);
   }
 
   return (
@@ -37,7 +39,7 @@ export function SettingsForm({ initial }: { initial: Record<string, string> }) {
       ))}
       {msg && <p className="text-sm text-accent">{msg}</p>}
       <button type="submit" className="btn-primary">
-        Запази
+        {t.admin.save}
       </button>
     </form>
   );

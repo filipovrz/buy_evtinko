@@ -1,5 +1,5 @@
 import { prisma } from "./prisma";
-import { sendMail } from "./mail";
+import { sendMail, notifyAdmin } from "./mail";
 import { generateInvoicePdf } from "./invoice";
 import { formatPrice } from "./utils";
 
@@ -62,6 +62,13 @@ export async function sendOrderPaidEmail(orderId: string) {
       ? [{ filename: `${order.invoiceNumber || order.orderNumber}.pdf`, path: invoicePath, contentType: "application/pdf" }]
       : undefined,
   });
+
+  await notifyAdmin(
+    `Paid order ${order.orderNumber}`,
+    `<p>Order <strong>${order.orderNumber}</strong> paid.</p>
+     <p>Customer: ${email}<br/>Total: ${formatPrice(order.total, order.currency)}<br/>Method: ${order.paymentMethod}</p>
+     <p><a href="${site}/admin/orders">Open admin orders</a></p>`
+  );
 
   await prisma.order.update({
     where: { id: order.id },

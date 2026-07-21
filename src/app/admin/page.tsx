@@ -1,11 +1,17 @@
 import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
+import { getServerDictionary } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Админ табло" };
+
+export async function generateMetadata() {
+  const { t } = await getServerDictionary();
+  return { title: `${t.admin.dashboard} — Admin` };
+}
 
 export default async function AdminDashboard() {
+  const { t } = await getServerDictionary();
   const [products, orders, users, revenue, pending, messages] = await Promise.all([
     prisma.product.count(),
     prisma.order.count(),
@@ -25,18 +31,18 @@ export default async function AdminDashboard() {
   });
 
   const stats = [
-    { label: "Продукти", value: String(products), href: "/admin/products" },
-    { label: "Поръчки", value: String(orders), href: "/admin/orders" },
-    { label: "Приходи (платени)", value: formatPrice(revenue._sum.total || 0), href: "/admin/orders" },
-    { label: "Чакащи", value: String(pending), href: "/admin/orders" },
-    { label: "Потребители", value: String(users), href: "/admin/users" },
-    { label: "Нови съобщения", value: String(messages), href: "/admin/messages" },
+    { label: t.admin.products, value: String(products), href: "/admin/products" },
+    { label: t.admin.orders, value: String(orders), href: "/admin/orders" },
+    { label: `${t.admin.orders} (PAID)`, value: formatPrice(revenue._sum.total || 0), href: "/admin/orders" },
+    { label: "Pending", value: String(pending), href: "/admin/orders" },
+    { label: t.admin.users, value: String(users), href: "/admin/users" },
+    { label: t.admin.messages, value: String(messages), href: "/admin/messages" },
   ];
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold text-ink-950">Табло</h1>
-      <p className="mt-1 text-sm text-ink-500">Управление на buy-software.evtinko-bg.com</p>
+      <h1 className="font-display text-3xl font-semibold text-ink-950">{t.admin.dashboard}</h1>
+      <p className="mt-1 text-sm text-ink-500">buy-software.evtinko-bg.com</p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {stats.map((s) => (
@@ -53,9 +59,9 @@ export default async function AdminDashboard() {
 
       <div className="mt-10 rounded-2xl border border-ink-100 bg-white">
         <div className="flex items-center justify-between border-b border-ink-100 px-5 py-4">
-          <h2 className="font-semibold">Последни поръчки</h2>
+          <h2 className="font-semibold">{t.account.recentOrders}</h2>
           <Link href="/admin/orders" className="text-sm text-brand-600 hover:underline">
-            Всички
+            {t.common.viewAll}
           </Link>
         </div>
         <div className="divide-y divide-ink-100">
@@ -64,7 +70,7 @@ export default async function AdminDashboard() {
               <div>
                 <p className="font-medium">{o.orderNumber}</p>
                 <p className="text-ink-500">
-                  {o.guestEmail || "потребител"} · {o.items.length} артикула · {o.paymentMethod}
+                  {o.guestEmail || "user"} · {o.items.length} · {o.paymentMethod}
                 </p>
               </div>
               <div className="text-right">
@@ -74,7 +80,7 @@ export default async function AdminDashboard() {
             </div>
           ))}
           {recent.length === 0 && (
-            <p className="px-5 py-8 text-center text-ink-500">Няма поръчки.</p>
+            <p className="px-5 py-8 text-center text-ink-500">{t.account.noOrders}</p>
           )}
         </div>
       </div>

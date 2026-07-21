@@ -1,8 +1,10 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import { useI18n } from "@/i18n/use-i18n";
 
 export default function AdminTwoFactorPage() {
+  const { t } = useI18n();
   const [enabled, setEnabled] = useState(false);
   const [qr, setQr] = useState("");
   const [secret, setSecret] = useState("");
@@ -28,7 +30,7 @@ export default function AdminTwoFactorPage() {
     const data = await res.json();
     setQr(data.qrDataUrl || "");
     setSecret(data.secret || "");
-    setMsg("Сканирайте QR кода с Google Authenticator / Authy, после въведете код.");
+    setMsg(t.admin.twoFaScan);
   }
 
   async function enable(e: FormEvent) {
@@ -40,10 +42,10 @@ export default function AdminTwoFactorPage() {
     });
     const data = await res.json();
     if (!res.ok) {
-      setMsg(data.error || "Грешка");
+      setMsg(data.error || t.common.error);
       return;
     }
-    setMsg("2FA е активирана.");
+    setMsg(t.admin.twoFaEnabledMsg);
     setEnabled(true);
     setCode("");
   }
@@ -57,10 +59,10 @@ export default function AdminTwoFactorPage() {
     });
     const data = await res.json();
     if (!res.ok) {
-      setMsg(data.error || "Грешка");
+      setMsg(data.error || t.common.error);
       return;
     }
-    setMsg("2FA е изключена.");
+    setMsg(t.admin.twoFaDisabledMsg);
     setEnabled(false);
     setQr("");
     setSecret("");
@@ -69,31 +71,31 @@ export default function AdminTwoFactorPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold">2FA за админ</h1>
+      <h1 className="font-display text-3xl font-semibold">{t.admin.twoFa}</h1>
       <p className="mt-1 text-sm text-ink-500">
-        Двуфакторна автентикация с Authenticator приложение. Статус:{" "}
-        <strong className={enabled ? "text-accent" : ""}>{enabled ? "ВКЛЮЧЕНА" : "ИЗКЛЮЧЕНА"}</strong>
+        {t.admin.twoFaStatus}:{" "}
+        <strong className={enabled ? "text-accent" : ""}>
+          {enabled ? t.admin.twoFaOn : t.admin.twoFaOff}
+        </strong>
       </p>
 
       <div className="mt-8 max-w-lg space-y-4 rounded-2xl border border-ink-100 bg-white p-6">
         {!enabled && (
           <>
             <button type="button" className="btn-primary" onClick={setup}>
-              Генерирай QR / Setup
+              {t.admin.twoFaSetup}
             </button>
             {qr && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={qr} alt="2FA QR" className="h-48 w-48 rounded-lg border border-ink-100" />
             )}
-            {secret && (
-              <p className="break-all font-mono text-xs text-ink-500">Secret: {secret}</p>
-            )}
+            {secret && <p className="break-all font-mono text-xs text-ink-500">Secret: {secret}</p>}
             {qr && (
               <form onSubmit={enable} className="space-y-3">
-                <label className="label">Код от приложението</label>
+                <label className="label">{t.auth.twoFactorCode}</label>
                 <input className="input" value={code} onChange={(e) => setCode(e.target.value)} required />
                 <button type="submit" className="btn-accent">
-                  Активирай 2FA
+                  {t.admin.twoFaEnable}
                 </button>
               </form>
             )}
@@ -102,10 +104,10 @@ export default function AdminTwoFactorPage() {
 
         {enabled && (
           <form onSubmit={disable} className="space-y-3">
-            <label className="label">Код за изключване</label>
+            <label className="label">{t.auth.twoFactorCode}</label>
             <input className="input" value={code} onChange={(e) => setCode(e.target.value)} required />
             <button type="submit" className="btn-secondary !text-red-600">
-              Изключи 2FA
+              {t.admin.twoFaDisable}
             </button>
           </form>
         )}

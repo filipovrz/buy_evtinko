@@ -25,6 +25,11 @@ const providers: NextAuthOptions["providers"] = [
       const valid = await bcrypt.compare(credentials.password, user.passwordHash);
       if (!valid) return null;
 
+      // Credentials accounts must verify email (admin-created / OAuth may already be verified)
+      if (!user.emailVerified && user.role !== "ADMIN") {
+        throw new Error("EMAIL_NOT_VERIFIED");
+      }
+
       if (user.totpEnabled && user.totpSecret) {
         const code = String(credentials.totp || "").trim();
         if (!code || !verifyTotpCode(code, user.totpSecret)) {
@@ -76,8 +81,14 @@ export const authOptions: NextAuthOptions = {
       if (account?.provider === "google" || account?.provider === "facebook") {
         if (!user.email) return false;
         const existing = await prisma.user.findUnique({ where: { email: user.email } });
-        if (existing && !existing.role) {
-          await prisma.user.update({ where: { id: existing.id }, data: { role: "CUSTOMER" } });
+        if (existing) {
+          await prisma.user.update({
+            where: { id: existing.id },
+            data: {
+              role: existing.role || "CUSTOMER",
+              emailVerified: existing.emailVerified || new Date(),
+            },
+          });
         }
       }
       return true;

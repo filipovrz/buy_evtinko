@@ -13,10 +13,10 @@
   <w:body>
     <wx:sect>
       <w:p><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>TODO</w:t></w:r></w:p>
-      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-20T23:58:22.827Z</w:t></w:r></w:p>
+      <w:p><w:r><w:t>buy-software.evtinko-bg.com — exported 2026-07-21T00:20:43.123Z</w:t></w:r></w:p>
       <w:p><w:r><w:rPr><w:b/></w:rPr><w:t># TODO — Buy Software (Auctions Evtinko Ltd.)</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
-<w:p><w:r><w:t>Последна актуализация: 2026-07-21 (сейф / pause до утре)</w:t></w:r></w:p>
+<w:p><w:r><w:t>Последна актуализация: 2026-07-21 (night сейф / pause до утре)</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
 <w:p><w:r><w:rPr><w:b/></w:rPr><w:t>## Готово</w:t></w:r></w:p>
 <w:p><w:r><w:t> </w:t></w:r></w:p>
@@ -25,6 +25,10 @@
 <w:p><w:r><w:t>- [x] Плащания: Stripe, PayPal, ePay.bg + демо авто-одобрение</w:t></w:r></w:p>
 <w:p><w:r><w:t>- [x] Сигурни download токени след PAID</w:t></w:r></w:p>
 <w:p><w:r><w:t>- [x] Админ панел: продукти, цени, upload, поръчки, категории, купони, потребители, съобщения, настройки</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Админ CRUD: delete продукти, edit категории, users add/edit/delete, messages create/edit/delete</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Админ профил (име + парола)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Админ UI следва език (EN primary)</w:t></w:r></w:p>
+<w:p><w:r><w:t>- [x] Email verification при регистрация + известия (админ/потребители)</w:t></w:r></w:p>
 <w:p><w:r><w:t>- [x] Страници: как работи, лицензи, поддръжка, контакт, условия, поверителност, връщания</w:t></w:r></w:p>
 <w:p><w:r><w:t>- [x] Seed продукти + админ потребител</w:t></w:r></w:p>
 <w:p><w:r><w:t>- [x] README, TODO, CHECKPOINT, CHAT_HISTORY (+ Office 2003 .doc)</w:t></w:r></w:p>

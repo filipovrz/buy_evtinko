@@ -30,13 +30,27 @@ function LoginForm() {
     });
     setLoading(false);
     if (res?.error) {
+      const check = await fetch("/api/auth/check-verified", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      }).then((r) => r.json());
+      if (check && check.verified === false) {
+        setError(t.admin.emailVerifyRequired);
+        return;
+      }
+      const err = String(res.error);
+      if (err.includes("EMAIL_NOT_VERIFIED")) {
+        setError(t.admin.emailVerifyRequired);
+        return;
+      }
       // NextAuth may mask the 2FA error — show 2FA field as fallback
       if (!need2fa) {
         setNeed2fa(true);
-                    setError("If you have 2FA, enter the authenticator code. Otherwise check email/password.");
-                  } else {
-                    setError("Invalid sign-in or 2FA code.");
-                  }
+        setError("If you have 2FA, enter the authenticator code. Otherwise check email/password.");
+      } else {
+        setError("Invalid sign-in or 2FA code.");
+      }
       return;
     }
     router.push(callbackUrl);

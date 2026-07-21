@@ -1,14 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import { CouponManager } from "@/components/admin/CouponManager";
+import { getServerDictionary } from "@/i18n/server";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Промо кодове — Админ" };
+
+export async function generateMetadata() {
+  const { t } = await getServerDictionary();
+  return { title: `${t.admin.coupons} — Admin` };
+}
 
 export default async function AdminCouponsPage() {
+  const { t } = await getServerDictionary();
   const coupons = await prisma.coupon.findMany({ orderBy: { createdAt: "desc" } });
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold">Промо кодове</h1>
+      <h1 className="font-display text-3xl font-semibold">{t.admin.coupons}</h1>
       <div className="mt-8">
         <CouponManager initial={coupons} />
       </div>

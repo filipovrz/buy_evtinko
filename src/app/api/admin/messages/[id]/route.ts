@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { slugify } from "@/lib/utils";
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -16,24 +15,20 @@ export async function PUT(req: Request, ctx: Ctx) {
   if (!(await assertAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const { id } = await ctx.params;
   const body = await req.json();
-  const name = String(body.name || "").trim();
-  if (!name) return NextResponse.json({ error: "Name required" }, { status: 400 });
 
-  const cat = await prisma.category.update({
-    where: { id },
-    data: {
-      name,
-      slug: body.slug ? slugify(String(body.slug)) : slugify(name),
-      description: body.description || null,
-      sortOrder: Number(body.sortOrder) || 0,
-    },
-  });
-  return NextResponse.json(cat);
+  const data: Record<string, unknown> = {};
+  if (body.subject !== undefined) data.subject = String(body.subject).trim();
+  if (body.message !== undefined) data.message = String(body.message).trim();
+  if (body.name !== undefined) data.name = String(body.name).trim();
+  if (body.isRead !== undefined) data.isRead = !!body.isRead;
+
+  const msg = await prisma.contactMessage.update({ where: { id }, data });
+  return NextResponse.json(msg);
 }
 
 export async function DELETE(_req: Request, ctx: Ctx) {
   if (!(await assertAdmin())) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   const { id } = await ctx.params;
-  await prisma.category.delete({ where: { id } });
+  await prisma.contactMessage.delete({ where: { id } });
   return NextResponse.json({ ok: true });
 }
